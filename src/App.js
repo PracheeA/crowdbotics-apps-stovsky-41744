@@ -73,12 +73,12 @@ function App() {
       <Router>
         <Routes>
 
-          <Route exact path='/' element={<ForgetPassword />} />
+          {/* <Route exact path='/' element={<ForgetPassword />} /> */}
           {/* <Route exact path='/' element={<StartStop/>} /> */}
         </Routes>
       </Router>
 
-      {/* <Card text="white" style={{ width: '27rem', background: '#799ACC' }}>
+      <Card text="white" style={{ width: '27rem', background: '#799ACC' }}>
 
         <Card.Body >
           <Card bg="white" text="dark" className='cardheader p-2'>
@@ -102,7 +102,7 @@ function App() {
             )}
           </Card>
         </Card.Body>
-      </Card> */}
+      </Card>
 
 
       <Modal show={show} onHide={handleClose} centered size="xl" className='modalnotification'>
