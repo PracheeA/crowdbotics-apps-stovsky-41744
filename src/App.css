@@ -1,38 +1,232 @@
-.App {
-  text-align: center;
+
+
+@font-face {
+  font-family: 'Roboto-bold';
+  src: local('Roboto-Bold'), url(./assets/fonts/Roboto-Bold.ttf) format('truetype');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: local('Roboto-Regular'), url(./assets/fonts/Roboto-Regular.ttf) format('truetype');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: local('Roboto-Medium'), url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
+}
+
+textarea {
+  resize: none;
+}
+.form-control.is-valid, .was-validated .form-control:valid {
+  border-color: #198754;
+  padding-right: 0rem !important;
+  background-image: none !important;
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.mainCard {
+  display: flex;
+  flex: 1;
+}
+
+.mainCardDashboard {
+  display: flex;
+  flex: 1;
+}
+.backcolor {
+  background-color: #1746A2;
+}
+input::-ms-reveal{
+  display:none;
+}
+.logowidth{
+  width: 100px;
+}
+
+.btncss {
+  background: linear-gradient(90deg, #FF731D 99.99%, #C5E14B 100%);
+  border: none;
+  width: 100%;
+  font-family: "Roboto-bold";
+}
+
+.mainheader {
+  font-family: 'Roboto-bold';
+  font-size: 28px !important;
+}
+
+.labelcss {
+  font-family: 'Roboto-Medium';
+}
+
+.cardcss {
+  width: 28rem;
+  background-color: #DADADA;
+  text-align: left;
+  box-shadow: 0px 4px 5px 0px #4B4B4B;
+  display: flex
+}
+
+.form-label {
+  font-family: 'Roboto-Medium';
+  font-size: 14px;
+}
+
+.btn {
+  font-family: 'Roboto-Regular' !important;
+  font-size: 14px;
+}
+
+
+@media (max-width:991px) {
+  .cardcss {
+      width: 28rem;
+      background-color: #DADADA;
+      text-align: left;
+      box-shadow: 0px 4px 5px 0px #4B4B4B;
+      display: flex
+  }
+
+}
+
+@media (max-width:650px) {
+  .cardcss {
+      width: 20rem;
+      background-color: #DADADA;
+      text-align: left;
+      box-shadow: 0px 4px 5px 0px #4B4B4B;
+      display: flex
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (max-width: 480px) {
+  .cardcss {
+      width: 15rem;
+      background-color: #DADADA;
+      text-align: left;
+      box-shadow: 0px 4px 5px 0px #4B4B4B;
+      display: flex
+  }
+}
+
+@media (max-width:290px) {
+  .cardcss {
+      width: 15rem;
+      background-color: #DADADA;
+      text-align: left;
+      box-shadow: 0px 4px 5px 0px #4B4B4B;
+      display: flex
+  }
+}
+
+
+.cardheader{
+  display: flex !important;
+  font-family: 'Roboto-Medium';
+  justify-content: space-between;
+  flex-direction: row !important;
+}
+
+.modalheader{
+  font-family: 'Roboto-Medium';
+  font-size: 20px !important;
+}
+
+.cardTitle{
+  font-family: 'Roboto-bold';
+  font-size: 40px !important;
+    color: #799ACC !important;
+}
+
+.textcss{
+  font-family: 'Roboto-Regular';
+  font-size: 13px;
+    padding: 7px;
+}
+
+.cardBody{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.cardbtn{
+  background-color: #799ACC !important;
+  color: #FFFFFF;
+  border-color: #799ACC !important;
+  font-family: 'Roboto-Regular';
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cardbtn1{
+  background-color: #799ACC !important;
+  color: #FFFFFF;
+  border-color: #799ACC !important;
+  font-family: 'Roboto-Regular';
+  width: 100%;
+  
+}
+
+.stopButton{
+  background-color: #888686 !important;
+  color: #FFFFFF;
+  border-color: #888686 !important;
+  font-family: 'Roboto-Regular';
+}
+
+.cancelButton{
+  background-color: #888686 !important;
+  color: #FFFFFF;
+  border-color: #888686 !important;
+  font-family: 'Roboto-Regular';
+  width: 100%;
+}
+
+.textboxcss{
+  background-color: rgba(121, 154, 204, 0.18) !important;
+}
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+}
+
+.modalnotification {
+  max-width: var(--bs-modal-width);
+  margin-right: 1% !important;
+  margin-left: 30% !important;
+  /* margin-top: 4.5% !important; */
+}
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px !important;
+  padding-right: 10px !important;
+  border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+  border-top-left-radius: var(--bs-modal-inner-border-radius);
+  border-top-right-radius: var(--bs-modal-inner-border-radius);
+}
+
+.btnflex{
+  display: flex;
+    justify-content: center;
+}
+
+.textrow{
+  text-align: center;
 }
