@@ -1,5 +1,3 @@
-
-
 @font-face {
   font-family: 'Roboto-bold';
   src: local('Roboto-Bold'), url(./assets/fonts/Roboto-Bold.ttf) format('truetype');
@@ -18,7 +16,9 @@
 textarea {
   resize: none;
 }
-.form-control.is-valid, .was-validated .form-control:valid {
+
+.form-control.is-valid,
+.was-validated .form-control:valid {
   border-color: #198754;
   padding-right: 0rem !important;
   background-image: none !important;
@@ -36,13 +36,16 @@ textarea {
   display: flex;
   flex: 1;
 }
+
 .backcolor {
   background-color: #1746A2;
 }
-input::-ms-reveal{
-  display:none;
+
+input::-ms-reveal {
+  display: none;
 }
-.logowidth{
+
+.logowidth {
   width: 100px;
 }
 
@@ -56,10 +59,12 @@ input::-ms-reveal{
 .mainheader {
   font-family: 'Roboto-bold';
   font-size: 28px !important;
+  cursor: pointer;
 }
 
 .labelcss {
   font-family: 'Roboto-Medium';
+  font-size: 14px;
 }
 
 .cardcss {
@@ -83,102 +88,102 @@ input::-ms-reveal{
 
 @media (max-width:991px) {
   .cardcss {
-      width: 28rem;
-      background-color: #DADADA;
-      text-align: left;
-      box-shadow: 0px 4px 5px 0px #4B4B4B;
-      display: flex
+    width: 28rem;
+    background-color: #DADADA;
+    text-align: left;
+    box-shadow: 0px 4px 5px 0px #4B4B4B;
+    display: flex
   }
 
 }
 
 @media (max-width:650px) {
   .cardcss {
-      width: 20rem;
-      background-color: #DADADA;
-      text-align: left;
-      box-shadow: 0px 4px 5px 0px #4B4B4B;
-      display: flex
+    width: 20rem;
+    background-color: #DADADA;
+    text-align: left;
+    box-shadow: 0px 4px 5px 0px #4B4B4B;
+    display: flex
   }
 }
 
 @media (max-width: 480px) {
   .cardcss {
-      width: 15rem;
-      background-color: #DADADA;
-      text-align: left;
-      box-shadow: 0px 4px 5px 0px #4B4B4B;
-      display: flex
+    width: 15rem;
+    background-color: #DADADA;
+    text-align: left;
+    box-shadow: 0px 4px 5px 0px #4B4B4B;
+    display: flex
   }
 }
 
 @media (max-width:290px) {
   .cardcss {
-      width: 15rem;
-      background-color: #DADADA;
-      text-align: left;
-      box-shadow: 0px 4px 5px 0px #4B4B4B;
-      display: flex
+    width: 15rem;
+    background-color: #DADADA;
+    text-align: left;
+    box-shadow: 0px 4px 5px 0px #4B4B4B;
+    display: flex
   }
 }
 
 
-.cardheader{
+.cardheader {
   display: flex !important;
   font-family: 'Roboto-Medium';
   justify-content: space-between;
   flex-direction: row !important;
 }
 
-.modalheader{
+.modalheader {
   font-family: 'Roboto-Medium';
   font-size: 20px !important;
 }
 
-.cardTitle{
+.cardTitle {
   font-family: 'Roboto-bold';
   font-size: 40px !important;
-    color: #799ACC !important;
+  color: #799ACC !important;
 }
 
-.textcss{
+.textcss {
   font-family: 'Roboto-Regular';
   font-size: 13px;
-    padding: 7px;
+  padding: 7px;
 }
 
-.cardBody{
+.cardBody {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.cardbtn{
+.cardbtn {
   background-color: #799ACC !important;
   color: #FFFFFF;
   border-color: #799ACC !important;
   font-family: 'Roboto-Regular';
-  
+
 }
 
-.cardbtn1{
+.cardbtn1 {
   background-color: #799ACC !important;
   color: #FFFFFF;
   border-color: #799ACC !important;
   font-family: 'Roboto-Regular';
   width: 100%;
-  
+
 }
 
-.stopButton{
+.stopButton {
   background-color: #888686 !important;
   color: #FFFFFF;
   border-color: #888686 !important;
   font-family: 'Roboto-Regular';
 }
 
-.cancelButton{
+.cancelButton {
   background-color: #888686 !important;
   color: #FFFFFF;
   border-color: #888686 !important;
@@ -186,9 +191,10 @@ input::-ms-reveal{
   width: 100%;
 }
 
-.textboxcss{
+.textboxcss {
   background-color: rgba(121, 154, 204, 0.18) !important;
 }
+
 .modal-content {
   position: relative;
   display: flex;
@@ -222,11 +228,11 @@ input::-ms-reveal{
   border-top-right-radius: var(--bs-modal-inner-border-radius);
 }
 
-.btnflex{
+.btnflex {
   display: flex;
-    justify-content: center;
+  justify-content: center;
 }
 
-.textrow{
+.textrow {
   text-align: center;
 }

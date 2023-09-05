@@ -1,20 +1,44 @@
+
+
+
 {
-  "short_name": "Your Extension Name",
+  "manifest_version": 3,
   "name": "Your Extension Name",
+  "version": "1.0",
+  "description": "Description of your extension",
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "declarativeContent",
+    "storage",
+    "tabs",
+    "tabCapture",
+    "desktopCapture",
+    "alarms",
+    "activeTab",
+    "downloads",
+    "<all_urls>" 
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"], 
+      "js": ["contentscript.js"]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "index.html", 
+    "default_icon": {
+      "16": "favicon.ico",
+    "48": "logo192.png",
+    "128": "logo512.png"
+    }
+  },
   "icons": {
     "16": "favicon.ico",
     "48": "logo192.png",
     "128": "logo512.png"
-  },
-  "permissions": [
-    "activeTab",
-    "audioCapture",
-    "videoCapture"
-  ],
-  "manifest_version": 2,
-  "version": "0.0.1",
-  "browser_action": {
-    "default_popup": "index.html",
-    "default_title": "Your Extension Name"
   }
 }

@@ -1,0 +1,130 @@
+/* Page.css */
+/* Style the scrollbar track (the area behind the scrollbar) */
+.scrollable-text {
+  max-height: 470px !important;
+  /* Set a maximum height to make the content scrollable */
+  overflow-y: scroll !important;
+  /* Enable vertical scrolling */
+}
+
+.listinput {
+  border-radius: 25px;
+  height: 32px;
+  margin-bottom: 4px;
+}
+
+.headerlogo {
+  display: flex;
+  background-color: white;
+  height: 57px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  justify-content: space-between;
+}
+
+.mainlogo {
+  height: 25px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.profile-image {
+  width: 50px;
+  /* Set the width and height to create a round shape */
+  height: 50px;
+  border-radius: 50%;
+  /* Create a round shape */
+  overflow: hidden;
+  /* Ensure the image stays within the round container */
+  margin-right: 10px;
+  /* Add some spacing between the image and other header content */
+}
+
+.profile-name {
+  font-family: 'Roboto-Regular';
+  font-size: 13px;
+}
+
+.listbtncss {
+  background-color: rgba(7, 75, 137, 1) !important;
+ 
+}
+
+.backcss{
+  height: 13px;
+}
+
+.backimg{
+  color: rgba(7, 75, 137, 1);
+  font-family: 'Roboto-Regular';
+  font-size: 13px;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnflex{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+
+.profileheader {
+  display: flex;
+  margin-right: 50px;
+  align-items: center;
+}
+
+.profileimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scrollable-text::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+.scrollable-text::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 4px;
+}
+
+/* Handle */
+.scrollable-text::-webkit-scrollbar-thumb {
+  background: rgba(19, 73, 138, 1);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.scrollable-text::-webkit-scrollbar-thumb:hover {
+  background: rgba(19, 73, 138, 1);
+}
+
+
+/* Page.css */
+.input-container {
+  position: relative;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.custom-input {
+  flex: 1;
+  padding-right: 30px;
+  /* Adjust the padding to make room for the clear icon */
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  /* Adjust the distance from the right edge */
+  transform: translateY(-50%);
+  cursor: pointer;
+}

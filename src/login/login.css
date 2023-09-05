@@ -1,0 +1,97 @@
+.tabheader{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.activeclass{
+    border-bottom: 4px solid ;
+    border-color: rgba(121, 154, 204, 1);
+    font-family: 'Roboto-bold';
+    font-size: 28px !important;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.inactive{
+    font-family: 'Roboto-bold';
+    font-size: 28px !important;
+    cursor: pointer;
+    border: none;
+}
+
+.googleimage {
+    margin-left: 10px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.eyeicon{
+    
+    position: absolute;
+    right: 30px;
+    transition-duration: 0s;
+    top: 320px;
+
+}
+
+.eyeicon1{
+    
+    position: absolute;
+    right: 30px;
+    transition-duration: 0s;
+    top: 342px;
+
+}
+.applelogin{
+    height: 30px;
+    cursor: pointer;
+}
+
+.lgimage {
+    height: 25px;
+    margin: 4%;
+    cursor: pointer;
+}
+.lgimageflex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.eyeiconp{
+    
+    position: absolute;
+    right: 30px;
+    transition-duration: 0s;
+    top: 390px;
+
+}
+.eyeiconp1{
+    
+    position: absolute;
+    right: 30px;
+    transition-duration: 0s;
+    top: 420px;
+
+}
+.eyeiconcp{
+    
+    position: absolute;
+    right: 30px;
+    transition-duration: 0s;
+    top: 312px;
+
+}
+
+.eyeiconcp1{
+    
+    position: absolute;
+    right: 30px;
+    transition-duration: 0s;
+    top: 340;
+
+}

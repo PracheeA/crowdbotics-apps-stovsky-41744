@@ -12,7 +12,13 @@ import start from './assets/Images/start.svg';
 import stop from './assets/Images/stop.svg';
 import React, { useState, useEffect } from 'react';
 import RecordRTC from 'recordrtc';
-
+import Login from './login/login';
+import AudioRecorder from "./AudioRecorder";
+import Sidebar from './sidebar/Sidebar';
+import Forgetpasschange from './forgetPassword/forgetpasschange';
+import ListOfRequirements from './ListOfRequirements/ListOfRequirements';
+import ListOfCandidate from './ListOfCandidate/ListOfCandidate';
+import CandidateDetails from './CandidateDetails/CandidateDetails';
 function App() {
 
   const [show, setShow] = useState(false);
@@ -44,12 +50,15 @@ function App() {
       } catch (error) {
         console.error('Error starting recording:', error);
       }
+
+      
     };
 
     const stopRecording = () => {
       if (recorder) {
         recorder.stopRecording(() => {
           const blob = recorder.getBlob();
+          console.log(blob,"blob")
           setRecordedBlob(blob);
           setIsRecording(false);
 
@@ -73,12 +82,18 @@ function App() {
       <Router>
         <Routes>
 
-          {/* <Route exact path='/' element={<ForgetPassword />} /> */}
-          {/* <Route exact path='/' element={<StartStop/>} /> */}
+        <Route exact path='/' element={<Login />} />
+          <Route exact path='/forgetpassword' element={<ForgetPassword />} />
+          <Route exact path='/sidebar' element={<Sidebar />} />
+          <Route exact path='/listofrequirements' element={<ListOfRequirements />} />
+          <Route exact path='/listofcandidate' element={<ListOfCandidate />} />
+          <Route exact path='/candidatedetails' element={<CandidateDetails />} />
+          
+          <Route exact path='/resetPassword' element={< Forgetpasschange />} />
         </Routes>
       </Router>
-
-      <Card text="white" style={{ width: '27rem', background: '#799ACC' }}>
+      {/* <AudioRecorder /> */}
+     {/* <Card text="white" style={{ width: '27rem', background: '#799ACC' }}>
 
         <Card.Body >
           <Card bg="white" text="dark" className='cardheader p-2'>
@@ -102,7 +117,7 @@ function App() {
             )}
           </Card>
         </Card.Body>
-      </Card>
+      </Card>  */}
 
 
       <Modal show={show} onHide={handleClose} centered size="xl" className='modalnotification'>
