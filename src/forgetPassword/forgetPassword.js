@@ -1,10 +1,11 @@
 
 import { useState } from 'react'
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form,Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { forgetPassword } from '../redux/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import logo from '../assets/Images/logo.svg';
 const ForgetPassword = () => {
   const [email, setEmail] = useState("")
   const [errors, setErrors] = useState("");
@@ -37,11 +38,31 @@ const ForgetPassword = () => {
     email: email
   }
   const handleSubmit = (e) => {
-   
+
     e.preventDefault()
     dispatch(forgetPassword(body))
+      .then((result) => {
+        // if(result.payload.msg != ''){
+        //   toast.success(result.payload.msg, {
+        //     position: toast.POSITION.TOP_RIGHT,
+        //     autoClose: 2000,
+        //     hideProgressBar: true,
+        //   });
+        // }else if(result.payload.non_field_errors[0] !=''){
+        //   toast.error(result.payload.non_field_errors[0], {
+        //     position: toast.POSITION.TOP_RIGHT,
+        //     autoClose: 2000,
+        //     hideProgressBar: true,
+        //   });
+        // }
+        
+
+       
+      })
+
+
     const validationErrors = {};
-   // navigate('/forgetpasschange')
+    // navigate('/forgetpasschange')
 
     if (!isEmailValid(email)) {
       validationErrors.email = "Please enter a valid email address.";
@@ -74,7 +95,8 @@ const ForgetPassword = () => {
         </div>
         <Card.Body className="p-0 m-0">
           <div className="text-center p-2" >
-            <Card.Title className='cardTitle'>Stovsky</Card.Title>
+            <Card.Title className='cardTitle'> <Image src={logo} alt="Image" className='loginlogo' />
+</Card.Title>
             <Card.Title className='mainheader mt-5'>Forget Password</Card.Title>
           </div>
           <Form className="p-4 pb-0" onSubmit={handleSubmit}>
@@ -92,14 +114,14 @@ const ForgetPassword = () => {
               Reset password
             </Button>
           </Form>
-          <div className="p-4">           
-           <Button
-            type='submit'
-            className='cancelButton'
-            onClick={() => navigate("/")}
-          >
-            Cancel
-          </Button></div>
+          <div className="p-4">
+            <Button
+              type='submit'
+              className='cancelButton'
+              onClick={() => navigate("/")}
+            >
+              Cancel
+            </Button></div>
 
         </Card.Body>
 

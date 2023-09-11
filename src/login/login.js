@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { Card, Button, Form,Image } from "react-bootstrap";
+import { Card, Button, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css'
@@ -9,10 +9,10 @@ import google from '../assets/Images/google.svg'
 import apple from '../assets/Images/apple.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { facebookLogin, signUpUser,signinuser } from '../redux/authSlice';
+import { facebookLogin, signUpUser, signinuser } from '../redux/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-
+import logo from '../assets/Images/logo.svg';
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password1, setPassword1] = useState('');
@@ -32,7 +32,7 @@ const Login = () => {
   const handleTogglePasswordVisibilityPassword = () => {
     setShowPasswordPass((prevShowPassword) => !prevShowPassword);
   };
-  
+
   const handleEmailChange = (event) => {
     const inputEmail = event.target.value;
     setEmail1(inputEmail);
@@ -78,7 +78,7 @@ const Login = () => {
     if (event.target.value.length > 0) {
       setShowEye1(true);
     } else {
-     
+
       setShowEye1(false);
     }
 
@@ -93,7 +93,7 @@ const Login = () => {
   };
   const handleConfirmPasswordChange = (event) => {
     if (event.target.value.length > 0) {
-     setShowEyePass(true)
+      setShowEyePass(true)
     } else {
       setShowEyePass(false)
     }
@@ -110,7 +110,7 @@ const Login = () => {
 
       setErrors(updatedErrors);
     }
-    if (errors.confirm_password_matches && inputPassword===password) {
+    if (errors.confirm_password_matches && inputPassword === password) {
       const updatedErrors = { ...errors };
 
       delete updatedErrors.confirm_password_matches;
@@ -142,14 +142,14 @@ const Login = () => {
     setlogin(false)
   }
 
-  const log =() =>{
+  const log = () => {
     setShow(false)
     setIsActive(true)
     setissignupActive(false)
     setlogin(true)
   }
-  
- 
+
+
 
   const responseFacebook = (accessToken) => {
 
@@ -258,11 +258,11 @@ const Login = () => {
   const isConfirmPasswordValid = (inputPassword) => {
     // Implement your own password validation logic
 
-    return inputPassword.trim().length > 8  
+    return inputPassword.trim().length > 8
   };
 
   const handleFormSubmit = (event) => {
-   
+
     event.preventDefault();
 
     // form validation
@@ -319,8 +319,8 @@ const Login = () => {
       });
 
   };
-  const isPasswordMatches =(inputPassword)=>{
-    return inputPassword ===password
+  const isPasswordMatches = (inputPassword) => {
+    return inputPassword === password
   }
   const handleFormSubmit1 = (event) => {
     event.preventDefault();
@@ -328,7 +328,7 @@ const Login = () => {
 
     const validationErrors = {};
     console.log("data1")
-  
+
     if (!isEmailValid(email)) {
       validationErrors.email = "Please enter a valid email address.";
     }
@@ -340,7 +340,7 @@ const Login = () => {
     if (!isConfirmPasswordValid(confirm_password)) {
       validationErrors.confirm_password = "Please enter a valid password";
     }
-    if(!isPasswordMatches(confirm_password)){
+    if (!isPasswordMatches(confirm_password)) {
       validationErrors.confirm_password_matches = "Password and Confirm does not match";
     }
 
@@ -358,7 +358,7 @@ const Login = () => {
 
       return;
     }
-    if(Object.keys(validationErrors).length === 0){
+    if (Object.keys(validationErrors).length === 0) {
       setEmail("");
       setPassword("");
       setConfirm_password("");
@@ -369,12 +369,12 @@ const Login = () => {
 
       console.log("data")
 
-      const body={
-        email:email,
-        password:password,
-        confirm_password:confirm_password
-       }
-  
+      const body = {
+        email: email,
+        password: password,
+        confirm_password: confirm_password
+      }
+
       setTnc(false);
       dispatch(signUpUser(body))
     }
@@ -384,7 +384,7 @@ const Login = () => {
 
   const [isChecked, setIsChecked] = useState(false);
   const handleRememberMeChange = () => {
-    setIsChecked(!isChecked); 
+    setIsChecked(!isChecked);
     setRememberMe(!rememberMe);
     if (errors.rememberMe) {
       const updatedErrors = { ...errors };
@@ -393,7 +393,7 @@ const Login = () => {
     }
   };
   const [isTermChecked, setisTermChecked] = useState(false);
-  
+
   const handleTermsNConditionsChange = () => {
     setisTermChecked(!isTermChecked)
     setTnc(!tnc);
@@ -406,7 +406,7 @@ const Login = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Card
-      className=" my-4"
+        className=" my-4"
         style={{
           width: "28rem",
           textAlign: "left",
@@ -414,80 +414,83 @@ const Login = () => {
           boxShadow: "0px 4px 5px 0px #4B4B4B",
         }}
       >
-       
+
         <Card.Body className="p-0 m-0">
           <div className="text-center " >
-            <Card.Title className='cardTitle p-4'>Stovsky</Card.Title>
+            <Card.Title className='p-4'>
+                <Image src={logo} alt="Image" className='loginlogo' />
+
+            </Card.Title>
             <ToastContainer />
           </div>
           <div className='tabheader'>
-          <Card.Title className={isActive ? 'activeclass' : 'inactive'} onClick={()=>{log()}}>Log In</Card.Title>
-          <Card.Title className={issignupActive ? 'activeclass' : 'inactive'} onClick={()=>{signup()}}>Sign up</Card.Title>
+            <Card.Title className={isActive ? 'activeclass' : 'inactive'} onClick={() => { log() }}>Log In</Card.Title>
+            <Card.Title className={issignupActive ? 'activeclass' : 'inactive'} onClick={() => { signup() }}>Sign up</Card.Title>
 
           </div>
-          
+
           {show && <div >
-          <Form  className="p-4 my-2" onSubmit={handleFormSubmit1}>
-          <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label className="text-start">
-                Enter Email address
-              </Form.Label>
-              <Form.Control
-                type="email"
-                className='textboxcss'
-                value={email}
-                onChange={handleEmailChange1}
-                isInvalid={!!errors.email}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-2" controlId="formBasicPassword">
-              <Form.Label className="text-start">Create Password</Form.Label>
-              <Form.Control
-                type={showPasswordPass ? "text" : "password"}
-                className='textboxcss'
-                value={password}
-                onChange={handlePasswordChange1}
-                isInvalid={!!errors.password}
-              />
-              {showEye1 && (
+            <Form className="p-4 my-2" onSubmit={handleFormSubmit1}>
+              <Form.Group className="mb-2" controlId="formBasicEmail">
+                <Form.Label className="text-start">
+                  Enter Email address
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  className='textboxcss'
+                  value={email}
+                  onChange={handleEmailChange1}
+                  isInvalid={!!errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-2" controlId="formBasicPassword">
+                <Form.Label className="text-start">Create Password</Form.Label>
+                <Form.Control
+                  type={showPasswordPass ? "text" : "password"}
+                  className='textboxcss'
+                  value={password}
+                  onChange={handlePasswordChange1}
+                  isInvalid={!!errors.password}
+                />
+                {showEye1 && (
                   <FontAwesomeIcon
-                  className="eyeiconcp" 
+                    className="eyeiconcp"
                     icon={showPasswordPass ? faEye : faEyeSlash}
                     onClick={handleTogglePasswordVisibilityPassword}
                   />
                 )}
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicConfirmPassword"
-            >
-              <Form.Label className="text-start">Confirm Password</Form.Label>
-              <Form.Control
-                 type={showPassword ? "text" : "password"}
-                 className='textboxcss'
-                value={confirm_password}
-                onChange={handleConfirmPasswordChange}
-                isInvalid={!!errors.confirm_password || !!errors.confirm_password_matches}
-              />
-              {showEyePass && (
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="formBasicConfirmPassword"
+              >
+                <Form.Label className="text-start">Confirm Password</Form.Label>
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  className='textboxcss'
+                  value={confirm_password}
+                  onChange={handleConfirmPasswordChange}
+                  isInvalid={!!errors.confirm_password || !!errors.confirm_password_matches}
+                />
+                {showEyePass && (
                   <FontAwesomeIcon
-                  className="eyeiconp"
+                    className="eyeiconp"
                     icon={showPassword ? faEye : faEyeSlash}
                     onClick={handleTogglePasswordVisibility}
                   />
                 )}
-              <Form.Control.Feedback type="invalid">
-                {errors.confirm_password_matches || errors.confirm_password}
-              </Form.Control.Feedback>
-            </Form.Group>
+                <Form.Control.Feedback type="invalid">
+                  {errors.confirm_password_matches || errors.confirm_password}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            <Form.Group className="mb-2" controlId="formRememberMe">
+              <Form.Group className="mb-2" controlId="formRememberMe">
                 <Form.Check
                   type="checkbox"
                   name='tnc'
@@ -512,22 +515,22 @@ const Login = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.rememberMe}</Form.Control.Feedback>
               </Form.Group>
-            <Button
-              type='submit'
-              className='mt-1 mb-2 cardbtn1'
-            >
-              Sign up
-            </Button>
-           
-          </Form>
+              <Button
+                type='submit'
+                className='mt-1 mb-2 cardbtn1'
+              >
+                Sign up
+              </Button>
+
+            </Form>
           </div>}
 
-         {login && <div >
-          <Form onSubmit={handleFormSubmit} className="p-4 my-2" >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className="text-start">Enter Email Address</Form.Label>
-            
-              <Form.Control
+          {login && <div >
+            <Form onSubmit={handleFormSubmit} className="p-4 my-2" >
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className="text-start">Enter Email Address</Form.Label>
+
+                <Form.Control
                   type="email"
                   value={email1}
                   className='textboxcss'
@@ -535,10 +538,10 @@ const Login = () => {
                   isInvalid={!!errors.email1}
                 />
                 <Form.Control.Feedback type="invalid">{errors.email1}</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className="text-start">Enter password</Form.Label>
-              <Form.Control
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className="text-start">Enter password</Form.Label>
+                <Form.Control
                   type={showPassword ? 'text' : 'password'}
                   value={password1}
                   className='textboxcss'
@@ -555,28 +558,28 @@ const Login = () => {
                   />}
 
                 <Form.Control.Feedback type="invalid">{errors.password1}</Form.Control.Feedback>
-              <p className="my-2 text-center labelcss" style={{ marginLeft: '64%', cursor: 'pointer' }} onClick={() => navigate("/forgetpassword")}>
-                  <Link to="/forgetpassword" state={{}}> <span className='signupcss' style={{  fontFamily: 'Roboto-bold' }} >Forgot Password</span>
+                <p className="my-2 text-center labelcss" style={{ marginLeft: '64%', cursor: 'pointer' }} onClick={() => navigate("/forgetpassword")}>
+                  <Link to="/forgetpassword" state={{}}> <span className='signupcss' style={{ fontFamily: 'Roboto-bold' }} >Forgot Password</span>
                   </Link>
                 </p>
-            </Form.Group>
+              </Form.Group>
 
-           
-            <Button
-              type='submit'
-              className='mt-3 mb-2 cardbtn1'
-            >
-             Log In
-            </Button>
-           
-          </Form>
 
-          <p className="my-2 text-center labelcss" >or login with</p>
+              <Button
+                type='submit'
+                className='mt-3 mb-2 cardbtn1'
+              >
+                Log In
+              </Button>
+
+            </Form>
+
+            <p className="my-2 text-center labelcss" >or login with</p>
             <div className='lgimageflex'>
-           <Image src={apple} className='applelogin' />
+              <Image src={apple} className='applelogin' />
               <FacebookLoginButton onFacebookLogin={responseFacebook} />
 
-              <Image src={google} alt="Image" className='googleimage'  onClick={() => {
+              <Image src={google} alt="Image" className='googleimage' onClick={() => {
                 handleGoogleSignInAPI()
               }} />
             </div>

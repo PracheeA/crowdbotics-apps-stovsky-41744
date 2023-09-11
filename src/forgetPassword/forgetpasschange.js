@@ -1,12 +1,14 @@
-import {useState,useEffect} from 'react'
-import {Card,Button,Form} from "react-bootstrap";
-import { useDispatch,useSelector } from "react-redux";
+import { useState, useEffect } from 'react'
+import { Card, Button, Form,Image } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { resetPassword } from '../redux/authSlice';
 import { useParams } from "react-router";
+import './forgetPassword.css';
+import logo from '../assets/Images/logo.svg';
 const Forgetpasschange = () => {
 
   const [showPassword, setShowPassword] = useState(false);
@@ -20,40 +22,40 @@ const Forgetpasschange = () => {
   const dispatch = useDispatch()
   let navigate = useNavigate();
   // let { token } = useParams();
-  const [tokenKey,setTokenKey] = useState("");
-  const [tokenId,setTokenId] = useState("");
+  const [tokenKey, setTokenKey] = useState("");
+  const [tokenId, setTokenId] = useState("");
 
 
   const response = useSelector(state => state?.user?.detail)
 
 
-   const currentURL = window.location.href;
+  const currentURL = window.location.href;
 
-   // Create a URLSearchParams object to parse the query parameters
-   const urlSearchParams = new URLSearchParams(new URL(currentURL).search);
+  // Create a URLSearchParams object to parse the query parameters
+  const urlSearchParams = new URLSearchParams(new URL(currentURL).search);
 
-   // Get the 'token' parameter from the URL
-   const token = urlSearchParams.get('token');
+  // Get the 'token' parameter from the URL
+  const token = urlSearchParams.get('token');
 
-   // Do something with the token
-   console.log('Token:', token);
+  // Do something with the token
+  console.log('Token:', token);
 
-  
-    useEffect(()=>{
-      setTokenId(token.split("-")[2])
-      setTokenKey(token.split("-")[0]+"-"+token.split("-")[1])
-    },[])
-    const body ={
-      new_password1: password,
-      new_password2: confirm_password,
-      uid: tokenId,
-      token: tokenKey
+
+  useEffect(() => {
+    setTokenId(token.split("-")[2])
+    setTokenKey(token.split("-")[0] + "-" + token.split("-")[1])
+  }, [])
+  const body = {
+    new_password1: password,
+    new_password2: confirm_password,
+    uid: tokenId,
+    token: tokenKey
   }
   const handlePasswordChange1 = (event) => {
     if (event.target.value.length > 0) {
       setShowEye1(true);
     } else {
-     
+
       setShowEye1(false);
     }
 
@@ -68,7 +70,7 @@ const Forgetpasschange = () => {
   };
   const handleConfirmPasswordChange = (event) => {
     if (event.target.value.length > 0) {
-     setShowEyePass(true)
+      setShowEyePass(true)
     } else {
       setShowEyePass(false)
     }
@@ -85,7 +87,7 @@ const Forgetpasschange = () => {
 
       setErrors(updatedErrors);
     }
-    if (errors.confirm_password_matches && inputPassword===password) {
+    if (errors.confirm_password_matches && inputPassword === password) {
       const updatedErrors = { ...errors };
 
       delete updatedErrors.confirm_password_matches;
@@ -103,16 +105,16 @@ const Forgetpasschange = () => {
   const isConfirmPasswordValid = (inputPassword) => {
     // Implement your own password validation logic
 
-    return inputPassword.trim().length > 8  
+    return inputPassword.trim().length > 8
   };
 
   ////////////////
 
   const isPasswordValid = (inputPassword) => {
-    return inputPassword.trim().length > 0;
+    return inputPassword.trim().length > 8;
   };
-  const isPasswordMatches =(inputPassword)=>{
-    return inputPassword ===password
+  const isPasswordMatches = (inputPassword) => {
+    return inputPassword === password
   }
 
   const handleSubmit = (event) => {
@@ -120,8 +122,8 @@ const Forgetpasschange = () => {
 
 
     const validationErrors = {};
-  
-   
+
+
     if (!isPasswordValid(password)) {
       validationErrors.password = "Please enter a valid password";
     }
@@ -129,37 +131,53 @@ const Forgetpasschange = () => {
     if (!isConfirmPasswordValid(confirm_password)) {
       validationErrors.confirm_password = "Please enter a valid password";
     }
-    if(!isPasswordMatches(confirm_password)){
+    if (!isPasswordMatches(confirm_password)) {
       validationErrors.confirm_password_matches = "Password and Confirm does not match";
     }
 
-  
+
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
 
       return;
     }
-    if(Object.keys(validationErrors).length === 0){
-     
+    if (Object.keys(validationErrors).length === 0) {
+
       setPassword("");
       setConfirm_password("");
 
-      console.log("data")
-
-      // const body={
-      //   password:password,
-      //   confirm_password:confirm_password
-      //  }
-  
-     
       dispatch(resetPassword(body))
+        .then((result) => {
+         console.log(result,"result")
+         
+            toast.success(result.payload.msg, {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+              hideProgressBar: true,
+            });
+
+            toast.error(result.payload.new_password2[0], {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+              hideProgressBar: true,
+            });
+        })
+        .catch((error) => {
+          toast.error(error.payload.new_password2[0],error.payload.new_password2[1], {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+        });
     }
 
     setErrors({});
   };
   return (
+    
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <ToastContainer />
       <Card
         style={{
           width: "28rem",
@@ -174,15 +192,16 @@ const Forgetpasschange = () => {
             className="d-flex my-4 mx-auto"
             style={{ width: "100px" }}
           />
-          <ToastContainer />
+          
         </div>
         <Card.Body className="p-0 m-0">
           <div className="text-center p-2" >
-            <Card.Title className='cardTitle'>Stovsky</Card.Title>
+            <Card.Title className='cardTitle'> <Image src={logo} alt="Image" className='loginlogo' />
+</Card.Title>
             <Card.Title className='mainheader mt-5'>Reset Password</Card.Title>
           </div>
           <Form className="p-4 my-2" onSubmit={handleSubmit}>
-          <Form.Group className="mb-2" controlId="formBasicPassword">
+            <Form.Group className="mb-2" controlId="formBasicPassword">
               <Form.Label className="text-start">Enter Password</Form.Label>
               <Form.Control
                 type={showPasswordPass ? "text" : "password"}
@@ -192,12 +211,12 @@ const Forgetpasschange = () => {
                 isInvalid={!!errors.password}
               />
               {showEye1 && (
-                  <FontAwesomeIcon
-                  className="eyeiconcp" 
-                    icon={showPasswordPass ? faEye : faEyeSlash}
-                    onClick={handleTogglePasswordVisibilityPassword}
-                  />
-                )}
+                <FontAwesomeIcon
+                  className="forgeteyeiconcp"
+                  icon={showPasswordPass ? faEye : faEyeSlash}
+                  onClick={handleTogglePasswordVisibilityPassword}
+                />
+              )}
               <Form.Control.Feedback type="invalid">
                 {errors.password}
               </Form.Control.Feedback>
@@ -208,19 +227,19 @@ const Forgetpasschange = () => {
             >
               <Form.Label className="text-start">Enter Re-Password</Form.Label>
               <Form.Control
-                 type={showPassword ? "text" : "password"}
-                 className='textboxcss'
+                type={showPassword ? "text" : "password"}
+                className='textboxcss'
                 value={confirm_password}
                 onChange={handleConfirmPasswordChange}
                 isInvalid={!!errors.confirm_password || !!errors.confirm_password_matches}
               />
               {showEyePass && (
-                  <FontAwesomeIcon
-                  className="eyeiconp"
-                    icon={showPassword ? faEye : faEyeSlash}
-                    onClick={handleTogglePasswordVisibility}
-                  />
-                )}
+                <FontAwesomeIcon
+                  className="forgeteyeiconp"
+                  icon={showPassword ? faEye : faEyeSlash}
+                  onClick={handleTogglePasswordVisibility}
+                />
+              )}
               <Form.Control.Feedback type="invalid">
                 {errors.confirm_password_matches || errors.confirm_password}
               </Form.Control.Feedback>
@@ -231,8 +250,11 @@ const Forgetpasschange = () => {
             >
               Reset password
             </Button>
+            <div className='forgetbackimg' onClick={()=>navigate('/')}>
+            Back to login
+          </div>
           </Form>
-         
+
 
         </Card.Body>
 

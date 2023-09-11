@@ -32,7 +32,7 @@
     height: 100px; */
     border-radius: 60%;
     overflow: hidden;
-    margin: 170px;
+    margin: 150px;
     margin-top: 0px;
     margin-bottom: 0px;
   }
@@ -64,6 +64,7 @@
     align-items: center;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
   }
   
   .btnflex{
@@ -145,3 +146,80 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
+
+
+  .usernamecss{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Namecss{
+    font-family: 'Roboto-Bold';
+    font-size: 15px;
+  }
+
+  .profileDetail{
+    font-family: 'Roboto-Bold';
+    font-size: 18px;
+  }
+
+  .profile{
+    font-family: 'Roboto-Regular';
+    font-size: 14px;
+  }
+
+  .otherimage{
+    height: 14px;
+    margin-right: 7px;
+  }
+  .location{
+    height: 17px;
+    margin-right: 7px;
+  }
+
+  .score{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    margin: 10px;
+  }
+
+  .scoretext{
+    font-family: 'Roboto-Regular';
+    font-size: 15px;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(76, 175, 80, 0.13);
+    color: rgba(76, 175, 80, 1);
+  }
+
+  .contactDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+  }
+
+.rowborder{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.devcss{
+  font-family: 'Roboto-Bold';
+  font-size: 13px;
+}
+.devtext{
+  font-family: 'Roboto-Regular';
+  font-size: 13px;
+}
+
+.skills{
+  background-color: rgba(237, 235, 235, 1);
+    width: auto;
+    border-radius: 10px;
+    font-family: 'Roboto-Regular';
+    font-size: 14px;
+}

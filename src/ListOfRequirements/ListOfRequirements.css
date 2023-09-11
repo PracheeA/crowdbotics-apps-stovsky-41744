@@ -27,6 +27,11 @@
   margin: 15px;
 }
 
+.editimage{
+  height: 14px;
+  margin-right: 7px;
+  cursor: pointer;
+}
 .profile-image {
   width: 50px;
   /* Set the width and height to create a round shape */

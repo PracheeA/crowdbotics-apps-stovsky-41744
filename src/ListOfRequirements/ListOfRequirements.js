@@ -7,9 +7,10 @@ import './ListOfRequirements.css';
 import logo from '../assets/Images/logo.svg';
 import profile from '../assets/Images/profile.svg';
 import back from '../assets/Images/back.svg';
-
+import edit from '../assets/Images/edit.svg';
 
 const CustomInput = ({ value, onChange, onClear }) => {
+
   const handleChange = (e) => {
     onChange(e.target.value);
   };
@@ -35,9 +36,22 @@ const CustomInput = ({ value, onChange, onClear }) => {
     </>
   );
 }
+
+
 const ListOfRequirements = () => {
   const [inputText, setInputText] = useState('');
+  const [show, setShow] = useState(true);
+  const [hide, sethide] = useState(false);
 
+  const onEditClick = () => {
+    setShow(false)
+    sethide(true)
+  }
+
+  const onCancelClick =() =>{
+    setShow(true)
+    sethide(false)
+  }
 
   const handleClearText = () => {
     setInputText('');
@@ -69,12 +83,30 @@ const ListOfRequirements = () => {
               {/* Left side with description */}
               <Card >
                 <Card.Body>
-                  <Card.Title>Transcription Name </Card.Title>
-                  <div className="scrollable-text">
+                  <Card.Title>Transcription Name <Image src={edit} onClick={() => onEditClick()} alt="Image" className='editimage' /></Card.Title>
+                 {show && <div className="scrollable-text" >
                     {Array(100)
                       .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
                       .join('')}
-                  </div>
+                  </div>}
+                    {hide && 
+                  <div className="scrollable-text" >
+                    <Form.Group controlId="exampleTextarea">
+                      <Form.Control as="textarea"
+                      defaultValue={Array(100)
+                        .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
+                        .join('')}
+                      rows={100} placeholder="Enter text..." />
+                    </Form.Group>
+                    <div className='btnflex'>
+            <Button className='listbtncss'>Save</Button>
+            <Button className='listbtncss mx-2' onClick={() => onCancelClick()}>Cancel</Button>
+          </div>
+                    {/* {Array(100)
+                      .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
+                      .join('')} */}
+                  </div>}
+
                 </Card.Body>
               </Card>
             </Col>
