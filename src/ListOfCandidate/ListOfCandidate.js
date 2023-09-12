@@ -7,7 +7,9 @@ import './ListOfCandidate.css';
 import logo from '../assets/Images/logo.svg';
 import profile from '../assets/Images/profile.svg';
 import back from '../assets/Images/back.svg';
+import { useNavigate } from 'react-router-dom';
 const rowsPerLoad = 5;
+
 const CustomInput = ({ value, onChange, onClear }) => {
   const handleChange = (e) => {
     onChange(e.target.value);
@@ -36,7 +38,7 @@ const CustomInput = ({ value, onChange, onClear }) => {
 }
 const ListOfCandidate = () => {
   const [inputText, setInputText] = useState('');
-
+  let navigate = useNavigate();
   const [data, setData] = useState([]);
   const [displayedData, setDisplayedData] = useState([]);
   const [start, setStart] = useState(0);
@@ -96,98 +98,98 @@ const ListOfCandidate = () => {
             <Card >
 
               <Card.Body>
-              <Card.Title className='cardtitle  m-0 p-0'>Transcription Name </Card.Title>
+                <Card.Title className='cardtitle  m-0 p-0'>Transcription Name </Card.Title>
                 <Row className='mt-2'>
-                <Col className="col-search" lg={2}>
-                 
-                  <FormGroup>
-                    <Form.Label className="text-start">Job Title</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                  <Col className="col-search" lg={2}>
+
+                    <FormGroup>
+                      <Form.Label className="text-start">Job Title</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
                   <Col className="col-search" lg={2}>
-                  <FormGroup>
-                    <Form.Label className="text-start">Experience level</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                    <FormGroup>
+                      <Form.Label className="text-start">Experience level</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
                   <Col className="col-search" lg={2}>
-                  <FormGroup>
-                    <Form.Label className="text-start">Skills Required</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                    <FormGroup>
+                      <Form.Label className="text-start">Skills Required</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
                   <Col className="col-search" lg={2}>
-                  <FormGroup>
-                    <Form.Label className="text-start"> Job Type</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                    <FormGroup>
+                      <Form.Label className="text-start"> Job Type</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
-                 
+
                 </Row>
                 <Row>
-                <Col className="col-search" lg={2}>
-                  <FormGroup>
-                    <Form.Label className="text-start">  Job location</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                  <Col className="col-search" lg={2}>
+                    <FormGroup>
+                      <Form.Label className="text-start">  Job location</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
-                <Col className="col-search" lg={2}>
-                  <FormGroup>
-                    <Form.Label className="text-start"> Industry</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
-                  </Col>
-                  <Col className="col-search" lg={3}>
-                  <FormGroup>
-                    <Form.Label className="text-start"> Educational Background</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                  <Col className="col-search" lg={2}>
+                    <FormGroup>
+                      <Form.Label className="text-start"> Industry</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
                   <Col className="col-search" lg={3}>
-                  <FormGroup>
-                    <Form.Label className="text-start">  Salary Range</Form.Label>
-                    <CustomInput
-                      value={inputText}
-                      onChange={setInputText}
-                      onClear={handleClearText}
-                    />
-                  </FormGroup>
+                    <FormGroup>
+                      <Form.Label className="text-start"> Educational Background</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
                   </Col>
-                 
+                  <Col className="col-search" lg={3}>
+                    <FormGroup>
+                      <Form.Label className="text-start">  Salary Range</Form.Label>
+                      <CustomInput
+                        value={inputText}
+                        onChange={setInputText}
+                        onClear={handleClearText}
+                      />
+                    </FormGroup>
+                  </Col>
+
                 </Row>
                 <Row>
-                <div className='candidatebtn'>
-            <Button className='listbtncss'>Search for Candidates</Button>
-          </div>
+                  <div className='candidatebtn'>
+                    <Button className='listbtncss' >Search for Candidates</Button>
+                  </div>
                 </Row>
               </Card.Body>
             </Card>
@@ -207,14 +209,14 @@ const ListOfCandidate = () => {
                   </thead>
                   <tbody>
                     {displayedData.map((item) => (
-                      <tr key={item.id}>
+                      <tr key={item.id} onClick={()=>navigate('/candidatedetails')} style={{cursor:'pointer'}}>
                         <td className='candidatenamecss'> <div class="profile-image">
-            <Image src={profile} alt="Image" className='profileimg' />
+                          <Image src={profile} alt="Image" className='profileimg' />
 
-          </div><div class="profile-name">
-          {item.candidate}<br></br>
-          {"Software engineer at Zem"}
-          </div></td>
+                        </div><div class="profile-name">
+                            {item.candidate}<br></br>
+                            {"Software engineer at Zem"}
+                          </div></td>
                         <td>{item.match}</td>
                         <td>{item.skills}</td>
                         <td>{item.contact}</td>
@@ -235,7 +237,7 @@ const ListOfCandidate = () => {
             </Card>
           </Row>
 
-         
+
         </Container>
       </main></>
   );

@@ -4,14 +4,17 @@ import home from '../assets/Images/home.svg'
 import search from '../assets/Images/search1.svg'
 import book from '../assets/Images/book.svg'
 import logout from '../assets/Images/logout.svg'
+import { useNavigate } from 'react-router-dom';
 import { Card, Button, Form,Image } from "react-bootstrap";
 function Sidebar() {
   // Initialize state to keep track of the active menu item
   const [activeMenuItem, setActiveMenuItem] = useState();
-
+  let navigate = useNavigate();
   // Function to handle menu item clicks
   const handleMenuItemClick = (menuItem) => {
     setActiveMenuItem(menuItem);
+    const menunavigate='/'+ menuItem;
+    navigate(menunavigate)
   };
 
   return (

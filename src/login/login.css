@@ -62,6 +62,12 @@
 
 }
 
+.loginlogo {
+    height: 40px;
+    cursor: pointer;
+    margin: 15px;
+  }
+
 .eyeiconp{
     
     position: absolute;

@@ -130,6 +130,19 @@ export const getUserData = createAsyncThunk('getUserData', async (body) => {
     return await res.json();
 })
 
+export const getProfile= createAsyncThunk('getProfile', async (body) => {
+    const res = await fetch("https://flat-star-41744.botics.co/profile/", {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `token ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(body)
+    })
+    return await res.json();
+})
+
+
 
 
 export const updateProfile = createAsyncThunk('updateprofile', async (body) => {
@@ -316,21 +329,6 @@ const authSlice = createSlice({
         },
         [resetPassword.fulfilled]: (state, { payload: { error, detail } }) => {
             state.loading = false;
-            if (error) {
-                state.error = error
-                toast.error("Invalid Email", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                });
-            } else {
-                state.detail = detail
-                toast.success('Password has been Reset', {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                });
-            }
         },
         [resetPassword.rejected]: (state, action) => {
             state.loading = true
