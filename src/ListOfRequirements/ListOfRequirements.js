@@ -43,18 +43,21 @@ const ListOfRequirements = () => {
   const [show, setShow] = useState(true);
   const [hide, sethide] = useState(false);
 
+  
+
+  const [jobTitle, setjobTitle] = useState('');
   const onEditClick = () => {
     setShow(false)
     sethide(true)
   }
 
-  const onCancelClick =() =>{
+  const onCancelClick = () => {
     setShow(true)
     sethide(false)
   }
 
   const handleClearText = () => {
-    setInputText('');
+    setjobTitle('');
   };
   return (
     <>
@@ -84,28 +87,28 @@ const ListOfRequirements = () => {
               <Card >
                 <Card.Body>
                   <Card.Title>Transcription Name <Image src={edit} onClick={() => onEditClick()} alt="Image" className='editimage' /></Card.Title>
-                 {show && <div className="scrollable-text" >
+                  {show && <div className="scrollable-text" >
                     {Array(100)
                       .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
                       .join('')}
                   </div>}
-                    {hide && 
-                  <div className="scrollable-text" >
-                    <Form.Group controlId="exampleTextarea">
-                      <Form.Control as="textarea"
-                      defaultValue={Array(100)
-                        .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
-                        .join('')}
-                      rows={100} placeholder="Enter text..." />
-                    </Form.Group>
-                    <div className='btnflex'>
-            <Button className='listbtncss'>Save</Button>
-            <Button className='listbtncss mx-2' onClick={() => onCancelClick()}>Cancel</Button>
-          </div>
-                    {/* {Array(100)
+                  {hide &&
+                    <div className="scrollable-text" >
+                      <Form.Group controlId="exampleTextarea">
+                        <Form.Control as="textarea"
+                          defaultValue={Array(100)
+                            .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
+                            .join('')}
+                          rows={100} placeholder="Enter text..." />
+                      </Form.Group>
+                      <div className='btnflex'>
+                        <Button className='listbtncss'>Save</Button>
+                        <Button className='listbtncss mx-2' onClick={() => onCancelClick()}>Cancel</Button>
+                      </div>
+                      {/* {Array(100)
                       .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
                       .join('')} */}
-                  </div>}
+                    </div>}
 
                 </Card.Body>
               </Card>
@@ -115,8 +118,8 @@ const ListOfRequirements = () => {
                 <FormGroup>
                   <Form.Label className="text-start">Job Title</Form.Label>
                   <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
+                    value={jobTitle}
+                    onChange={setjobTitle}
                     onClear={handleClearText}
                   />
                 </FormGroup>
