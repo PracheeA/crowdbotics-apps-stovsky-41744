@@ -50,20 +50,60 @@ const ListOfCandidate = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Assuming you have an array of data
-      const newData = Array.from({ length: data.length + rowsPerLoad }, (_, index) => ({
-        id: index + 1,
-        candidate: 'Joey M.',
-        match: '9/10 ',
-        skills: 'React.js',
-        contact: 'joeym@gamil.com'
-        // Add more columns as needed
-      }));
+      // const newData = Array.from({ length: data.length + rowsPerLoad }, (_, index) => ({
+      //   id: index + 1,
+      //   candidate: 'Joey M.',
+      //   match: '9/10 ',
+      //   skills: 'React.js',
+      //   contact: 'joeym@gamil.com'
+      // }));
+
+
+      const newData = [
+        {
+          id: "AWB123456",
+          candidate: 'Joey M.',
+          match: '9/10',
+          skills: 'React.js',
+          contact: 'joeym@gamil.com'
+        },
+        {
+          id: "AWB123456",
+          candidate: 'Joey M.',
+          match: '6/10',
+          skills: 'React.js',
+          contact: 'joeym@gamil.com'
+        },
+        {
+          id: "AWB123456",
+          candidate: 'Joey M.',
+          match: '4/10',
+          skills: 'React.js',
+          contact: 'joeym@gamil.com'
+        },
+       
+       
+      ];
 
       setData(newData);
     };
 
     fetchData();
   }, [data]);
+
+  const getColorClass = (value) => {
+    
+
+    if (value > '6/10') {
+      return 'green-text';
+    }else if (value < '5/10') {
+      return 'red-text';
+    } else if (value >= '5/10' && value <= '6/10') {
+      return 'yellow-text';
+    } else {
+      return ''; // No special class for values between 5 and 8
+    }
+  };
   useEffect(() => {
     // Update the displayedData based on start and rowsPerLoad
     setDisplayedData(data.slice(0, start + rowsPerLoad));
@@ -98,6 +138,9 @@ const ListOfCandidate = () => {
             <Card >
 
               <Card.Body>
+              {/* <div className={`number ${getColorClass()}`}>
+      
+    </div> */}
                 <Card.Title className='cardtitle  m-0 p-0'>Transcription Name </Card.Title>
                 <Row className='mt-2'>
                   <Col className="col-search" lg={2}>
@@ -217,7 +260,10 @@ const ListOfCandidate = () => {
                             {item.candidate}<br></br>
                             {"Software engineer at Zem"}
                           </div></td>
-                        <td>{item.match}</td>
+                        <td key={item.match} >
+                         <span className={`data-item ${getColorClass(item.match)} px-3 py-2`}>{item.match}</span> 
+                          </td>
+                       
                         <td>{item.skills}</td>
                         <td>{item.contact}</td>
                         {/* Render additional data columns here */}

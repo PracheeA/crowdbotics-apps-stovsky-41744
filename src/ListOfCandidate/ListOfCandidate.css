@@ -107,7 +107,32 @@
     background: rgba(19, 73, 138, 1);
   }
   
+  .red-text {
+    color: rgba(242, 78, 30, 1) !important;
+    font-family: 'Roboto-Regular';
+    font-size: 15px;
+    background-color: rgba(242, 78, 30, 0.13) !important;
+    border-radius: 8px;
+   
+  }
   
+  .green-text {
+    color: rgba(76, 175, 80, 1) !important;
+    font-family: 'Roboto-Regular';
+    font-size: 15px;
+    background-color: rgba(76, 175, 80, 0.13) !important;
+    border-radius: 8px;
+  }
+
+  .yellow-text{
+     color:  rgba(253, 203, 107, 1) !important;
+     font-family: 'Roboto-Regular';
+     font-size: 15px;
+     background-color: rgba(253, 203, 107, 0.13) !important;
+     border-radius: 8px;
+  }
+ 
+  /* rgba(253, 203, 107, 0.13) */
   /* Page.css */
   .input-container {
     position: relative;
