@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, Button, Form,Image } from "react-bootstrap";
+import { Card, Button, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -149,33 +149,34 @@ const Forgetpasschange = () => {
 
       dispatch(resetPassword(body))
         .then((result) => {
-         console.log(result,"result")
-         
-            toast.success(result.payload.msg, {
+          console.log(result, "result")
+          if (result.payload.detail) {
+            toast.success(result.payload.detail, {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 2000,
               hideProgressBar: true,
             });
-
+          }else if (result.payload.new_password2[0] != '') {
             toast.error(result.payload.new_password2[0], {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 2000,
               hideProgressBar: true,
             });
+          }
         })
         .catch((error) => {
-          toast.error(error.payload.new_password2[0],error.payload.new_password2[1], {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 2000,
-            hideProgressBar: true,
-          });
+          // toast.error("Invalid value", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 2000,
+          //   hideProgressBar: true,
+          // });
         });
     }
 
     setErrors({});
   };
   return (
-    
+
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <ToastContainer />
       <Card
@@ -192,12 +193,12 @@ const Forgetpasschange = () => {
             className="d-flex my-4 mx-auto"
             style={{ width: "100px" }}
           />
-          
+
         </div>
         <Card.Body className="p-0 m-0">
           <div className="text-center p-2" >
             <Card.Title className='cardTitle'> <Image src={logo} alt="Image" className='loginlogo' />
-</Card.Title>
+            </Card.Title>
             <Card.Title className='mainheader mt-5'>Reset Password</Card.Title>
           </div>
           <Form className="p-4 my-2" onSubmit={handleSubmit}>
@@ -250,9 +251,9 @@ const Forgetpasschange = () => {
             >
               Reset password
             </Button>
-            <div className='forgetbackimg' onClick={()=>navigate('/')}>
-            Back to login
-          </div>
+            <div className='forgetbackimg' onClick={() => navigate('/')}>
+              Back to login
+            </div>
           </Form>
 
 

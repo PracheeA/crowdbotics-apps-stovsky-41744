@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+/*global chrome*/
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route, Link, Redirect } from 'react-router-dom'
@@ -19,25 +19,60 @@ import Forgetpasschange from './forgetPassword/forgetpasschange';
 import ListOfRequirements from './ListOfRequirements/ListOfRequirements';
 import ListOfCandidate from './ListOfCandidate/ListOfCandidate';
 import CandidateDetails from './CandidateDetails/CandidateDetails';
+import Recording from './Recording/Recording';
 function App() {
 
- 
+  // In your React component after successful login
+  var isLoggedIn = true;
+  console.log(isLoggedIn, "isLoggedIn")
+
+
+  useEffect(() => {
+
+
+    if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+      // In your React component after successful login
+      // const loginStatus = true; // Set to true after successful login
+      // chrome.runtime.sendMessage({ loginStatus }, response => {
+      //   if (response && response.message === 'LoginStatusReceived') {
+      //     console.log('Login status sent to the extension.');
+      //   }
+      // });
+      const data = localStorage.getItem('token')
+      chrome.runtime.sendMessage({
+        action: 'my-action',
+        data,
+      });
+
+      
+
+    } else {
+      // You're not in a Chrome extension context
+      console.warn('chrome.runtime.sendMessage is not available in this environment.');
+    }
+
+
+  })
+
   return (
     <div className="App">
+
       <Router>
         <Routes>
 
-        <Route exact path='/' element={<Login />} />
+          <Route exact path='/' element={<Login />} />
           <Route exact path='/forgetpassword' element={<ForgetPassword />} />
           <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/listofrequirements' element={<ListOfRequirements />} />
           <Route exact path='/listofcandidate' element={<ListOfCandidate />} />
           <Route exact path='/candidatedetails' element={<CandidateDetails />} />
-          
+          {/* <Route exact path='/recording' element={<Recording />} /> */}
+          <Route exact path='/recording' element={<AudioRecorder />} />
+
           <Route exact path='/resetPassword' element={< Forgetpasschange />} />
         </Routes>
       </Router>
-    
+
 
     </div>
   );

@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { Card, Button, Form,Image } from "react-bootstrap";
+import { Card, Button, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { forgetPassword } from '../redux/authSlice';
@@ -42,23 +42,32 @@ const ForgetPassword = () => {
     e.preventDefault()
     dispatch(forgetPassword(body))
       .then((result) => {
-        // if(result.payload.msg != ''){
-        //   toast.success(result.payload.msg, {
-        //     position: toast.POSITION.TOP_RIGHT,
-        //     autoClose: 2000,
-        //     hideProgressBar: true,
-        //   });
-        // }else if(result.payload.non_field_errors[0] !=''){
-        //   toast.error(result.payload.non_field_errors[0], {
-        //     position: toast.POSITION.TOP_RIGHT,
-        //     autoClose: 2000,
-        //     hideProgressBar: true,
-        //   });
-        // }
-        
+        if (result.payload.msg != '') {
+          toast.success(result.payload.msg, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+        }else if (result.payload.non_field_errors[0] != '') {
 
-       
+          toast.error(result.payload.non_field_errors[0], {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+        }
+
+
+
       })
+      // .catch((error) => {
+      //   console.log(error,"error")
+      //   toast.error("Invalid value", {
+      //     position: toast.POSITION.TOP_RIGHT,
+      //     autoClose: 2000,
+      //     hideProgressBar: true,
+      //   });
+      // });
 
 
     const validationErrors = {};
@@ -96,7 +105,7 @@ const ForgetPassword = () => {
         <Card.Body className="p-0 m-0">
           <div className="text-center p-2" >
             <Card.Title className='cardTitle'> <Image src={logo} alt="Image" className='loginlogo' />
-</Card.Title>
+            </Card.Title>
             <Card.Title className='mainheader mt-5'>Forget Password</Card.Title>
           </div>
           <Form className="p-4 pb-0" onSubmit={handleSubmit}>

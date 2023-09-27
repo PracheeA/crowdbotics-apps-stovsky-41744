@@ -13,6 +13,7 @@ import { facebookLogin, signUpUser, signinuser } from '../redux/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import logo from '../assets/Images/logo.svg';
+import AppleLogin from 'react-apple-login'
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password1, setPassword1] = useState('');
@@ -32,6 +33,8 @@ const Login = () => {
   const handleTogglePasswordVisibilityPassword = () => {
     setShowPasswordPass((prevShowPassword) => !prevShowPassword);
   };
+
+
 
   const handleEmailChange = (event) => {
     const inputEmail = event.target.value;
@@ -218,6 +221,11 @@ const Login = () => {
             axios
               .request(config)
               .then(response => {
+                toast.success('Login Successful!', {
+                  position: toast.POSITION.TOP_RIGHT,
+                  autoClose: 2000,
+                  hideProgressBar: true,
+                });
                 console.log(response)
                 // localStorage.setItem("token", response.data.key)
                 // googlelogin(response.data.key)
@@ -403,6 +411,56 @@ const Login = () => {
       setErrors(updatedErrors);
     }
   };
+
+  const responseHandler = (response) => {
+    // Handle the Apple Sign In response here
+    console.log(response);
+  };
+
+  // const signInWithApple = response => {
+  //  // https://flat-star-41744.botics.co/modules/social-auth/apple/login/
+  //   console.log(response, "res")
+  // }
+
+  const signInWithApple = response => {
+    if (response?.authorization?.id_token) {
+      const { authorization } = response || {}
+      const { id_token, code } = authorization || {}
+
+      const body = {
+        id_token: id_token,
+        access_token: code
+      }
+      let data = JSON.stringify(body)
+      let config = {
+        method: "post",
+        url: 'https://flat-star-41744.botics.co/modules/social-auth/apple/login/',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: data
+      }
+      axios
+        .request(config)
+        .then(appleResponse => {
+          console.log(appleResponse,"appleResponse")
+          window.scrollTo(0, 0)
+          if (appleResponse?.status === 200 || appleResponse?.status === 201) {
+           console.log(appleResponse,"appleResponse")
+          } else if (appleResponse?.status === 400) {
+            console.log(appleResponse,"appleResponse")
+          }
+        })
+        .catch(error => {
+          window.scrollTo(0, 0)
+          if (error?.response?.status === 400) {
+           
+          }
+        })
+    } else {
+     console.log('error')
+    }
+  }
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Card
@@ -418,7 +476,7 @@ const Login = () => {
         <Card.Body className="p-0 m-0">
           <div className="text-center " >
             <Card.Title className='p-4'>
-                <Image src={logo} alt="Image" className='loginlogo' />
+              <Image src={logo} alt="Image" className='loginlogo' />
 
             </Card.Title>
             <ToastContainer />
@@ -576,7 +634,36 @@ const Login = () => {
 
             <p className="my-2 text-center labelcss" >or login with</p>
             <div className='lgimageflex'>
-              <Image src={apple} className='applelogin' />
+
+
+              <AppleLogin
+                clientId={"com.flat_star_41744.serviceId"}
+                redirectURI={"https://flat-star-41744.botics.co/"}
+                usePopup={true}
+                callback={signInWithApple} // Catch the response
+                scope="email name"
+                responseMode="query"
+                render={renderProps => (  //Custom Apple Sign in Button
+                  <button
+
+                    onClick={() => {
+                      renderProps.onClick()
+                    }}
+                    style={{
+                      backgroundColor: "white",
+                      padding: 10,
+                      border: "none",
+                      fontFamily: "none",
+                      lineHeight: "22px",
+                      fontSize: "22px"
+                    }}
+                  >
+                    <Image src={apple} className='applelogin' />
+                   
+                  </button>
+                )}
+              />
+             
               <FacebookLoginButton onFacebookLogin={responseFacebook} />
 
               <Image src={google} alt="Image" className='googleimage' onClick={() => {
