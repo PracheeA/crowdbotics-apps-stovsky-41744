@@ -152,6 +152,12 @@ input::-ms-reveal {
   padding: 7px;
 }
 
+.textcss1{
+  font-family: 'Roboto-Medium';
+  font-size: 16px;
+  padding: 7px;
+}
+
 .cardBody {
   display: flex;
   flex-direction: column;

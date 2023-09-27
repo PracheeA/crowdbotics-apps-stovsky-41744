@@ -8,8 +8,13 @@ import logo from '../assets/Images/logo.svg';
 import profile from '../assets/Images/profile.svg';
 import back from '../assets/Images/back.svg';
 import edit from '../assets/Images/edit.svg';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 const CustomInput = ({ value, onChange, onClear }) => {
+
+  const location = useLocation();
+  const userdata = location.state?.userdata || [];
+
+  console.log(userdata,"userdata")
 
   const handleChange = (e) => {
     onChange(e.target.value);

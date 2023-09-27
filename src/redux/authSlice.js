@@ -315,11 +315,11 @@ const authSlice = createSlice({
         },
         [forgetPassword.fulfilled]: (state, { payload: { error, msg } }) => {
             state.loading = false;
-            if (error) {
-                state.error = error
-            } else {
-                state.msg = msg
-            }
+            // if (error) {
+            //     state.error = error
+            // } else {
+            //     state.msg = msg
+            // }
         },
         [forgetPassword.rejected]: (state, action) => {
             state.loading = true
