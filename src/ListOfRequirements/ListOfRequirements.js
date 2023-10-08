@@ -48,9 +48,18 @@ const ListOfRequirements = () => {
   const [show, setShow] = useState(true);
   const [hide, sethide] = useState(false);
 
+
+//   "experience_title":"Full stack developer",
+// "keyword":"python",
+// "location":"Moscow",
+// "experience_company_industry": "IT"
   
 
   const [jobTitle, setjobTitle] = useState('');
+  const [keyword, setkeyword] = useState('');
+  const [location, setlocation] = useState('');
+  const [experience, setexperience] = useState('');
+
   const onEditClick = () => {
     setShow(false)
     sethide(true)
@@ -64,6 +73,19 @@ const ListOfRequirements = () => {
   const handleClearText = () => {
     setjobTitle('');
   };
+
+  const handleClearkeyword = () => {
+    setkeyword('');
+  };
+
+  const handleClearlocation = () => {
+    setlocation('');
+  };
+
+  const handleClearIndustry = () => {
+    setexperience('');
+  };
+  
   return (
     <>
       <div className='headerlogo'>
@@ -129,66 +151,35 @@ const ListOfRequirements = () => {
                   />
                 </FormGroup>
 
-                <FormGroup>
-                  <Form.Label className="text-start">Experience level</Form.Label>
-                  <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
-                  />
-                </FormGroup>
 
                 <FormGroup>
                   <Form.Label className="text-start"> Skills Required</Form.Label>
                   <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
+                    value={keyword}
+                    onChange={setkeyword}
+                    onClear={handleClearkeyword}
                   />
                 </FormGroup>
 
-                <FormGroup>
-                  <Form.Label className="text-start">Job Type</Form.Label>
-                  <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
-                  />
-                </FormGroup>
 
                 <FormGroup>
                   <Form.Label className="text-start"> Job Location</Form.Label>
                   <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
+                    value={location}
+                    onChange={setlocation}
+                    onClear={handleClearlocation}
                   />
                 </FormGroup>
 
                 <FormGroup>
                   <Form.Label className="text-start"> Industry</Form.Label>
                   <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
+                    value={experience}
+                    onChange={setexperience}
+                    onClear={handleClearIndustry}
                   />
                 </FormGroup>
-                <FormGroup>
-                  <Form.Label className="text-start"> Educational Background</Form.Label>
-                  <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Form.Label className="text-start">Salary Range</Form.Label>
-                  <CustomInput
-                    value={inputText}
-                    onChange={setInputText}
-                    onClear={handleClearText}
-                  />
-                </FormGroup>
+               
 
 
               </Form>

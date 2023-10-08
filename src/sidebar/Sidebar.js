@@ -3,19 +3,29 @@ import './Sidebar.css'; // You can create a CSS file for styling
 import home from '../assets/Images/home.svg'
 import search from '../assets/Images/search1.svg'
 import book from '../assets/Images/book.svg'
-import logout from '../assets/Images/logout.svg'
+import logout1 from '../assets/Images/logout.svg'
 import { useNavigate } from 'react-router-dom';
 import { Card, Button, Form,Image } from "react-bootstrap";
+import { logout } from '../redux/authSlice';
+import { useDispatch, useSelector } from "react-redux"
 function Sidebar() {
   // Initialize state to keep track of the active menu item
   const [activeMenuItem, setActiveMenuItem] = useState();
   let navigate = useNavigate();
+  const dispatch = useDispatch()
   // Function to handle menu item clicks
   const handleMenuItemClick = (menuItem) => {
     setActiveMenuItem(menuItem);
     const menunavigate='/'+ menuItem;
     navigate(menunavigate)
   };
+
+  const onLogout = () => {
+    alert()
+    navigate('/')
+    dispatch(logout())
+   
+  }
 
   return (
     <div className="App">
@@ -47,7 +57,7 @@ function Sidebar() {
         </ul>
 
         <div  className="mt-auto logoutcss">
-        <Image src={logout}  className='navbarimg'  />
+        <Image src={logout1}  onClick={onLogout}  className='navbarimg'  />
           Logout</div>
       </nav>
 

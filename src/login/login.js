@@ -1,4 +1,4 @@
-
+/*global chrome*/
 import { useState } from 'react'
 import { Card, Button, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -299,6 +299,12 @@ const Login = () => {
 
     dispatch(signinuser(body))
       .then((result) => {
+        console.log(result,"re")
+        let token=result.payload.key;
+        window.postMessage({ type: 'SEND_TOKEN', token }, '*');
+    //      chrome.runtime.sendMessage(result.payload.key, function(response) {
+    //   console.log('Token sent to the extension');
+    // });
         // if (result.payload.key) {
         //   dispatch(getUserProfile())
         //     .then((result) => {
@@ -447,14 +453,28 @@ const Login = () => {
           window.scrollTo(0, 0)
           if (appleResponse?.status === 200 || appleResponse?.status === 201) {
            console.log(appleResponse,"appleResponse")
+           toast.success('Login Successful!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
           } else if (appleResponse?.status === 400) {
             console.log(appleResponse,"appleResponse")
+            toast.error("Error", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+              hideProgressBar: true,
+            });
           }
         })
         .catch(error => {
           window.scrollTo(0, 0)
           if (error?.response?.status === 400) {
-           
+            toast.error("Error", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+              hideProgressBar: true,
+            });
           }
         })
     } else {

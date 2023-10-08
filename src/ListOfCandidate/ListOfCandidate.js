@@ -81,8 +81,8 @@ const ListOfCandidate = () => {
           skills: 'React.js',
           contact: 'joeym@gamil.com'
         },
-       
-       
+
+
       ];
 
       setData(newData);
@@ -92,11 +92,11 @@ const ListOfCandidate = () => {
   }, [data]);
 
   const getColorClass = (value) => {
-    
+
 
     if (value > '6/10') {
       return 'green-text';
-    }else if (value < '5/10') {
+    } else if (value < '5/10') {
       return 'red-text';
     } else if (value >= '5/10' && value <= '6/10') {
       return 'yellow-text';
@@ -113,9 +113,30 @@ const ListOfCandidate = () => {
     setStart(start + rowsPerLoad);
   };
 
+
+
+  const [jobTitle, setjobTitle] = useState('');
+  const [keyword, setkeyword] = useState('');
+  const [location, setlocation] = useState('');
+  const [experience, setexperience] = useState('');
+
+
   const handleClearText = () => {
-    setInputText('');
+    setjobTitle('');
   };
+
+  const handleClearkeyword = () => {
+    setkeyword('');
+  };
+
+  const handleClearlocation = () => {
+    setlocation('');
+  };
+
+  const handleClearIndustry = () => {
+    setexperience('');
+  };
+
   return (
     <>
       <div className='headerlogo'>
@@ -138,95 +159,55 @@ const ListOfCandidate = () => {
             <Card >
 
               <Card.Body>
-              {/* <div className={`number ${getColorClass()}`}>
+                {/* <div className={`number ${getColorClass()}`}>
       
     </div> */}
                 <Card.Title className='cardtitle  m-0 p-0'>Transcription Name </Card.Title>
                 <Row className='mt-2'>
-                  <Col className="col-search" lg={2}>
+                  <Col className="col-search" lg={3}>
 
                     <FormGroup>
                       <Form.Label className="text-start">Job Title</Form.Label>
                       <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
+                        value={jobTitle}
+                        onChange={setjobTitle}
                         onClear={handleClearText}
                       />
                     </FormGroup>
                   </Col>
-                  <Col className="col-search" lg={2}>
-                    <FormGroup>
-                      <Form.Label className="text-start">Experience level</Form.Label>
-                      <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col className="col-search" lg={2}>
+                  <Col className="col-search" lg={3}>
                     <FormGroup>
                       <Form.Label className="text-start">Skills Required</Form.Label>
                       <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col className="col-search" lg={2}>
-                    <FormGroup>
-                      <Form.Label className="text-start"> Job Type</Form.Label>
-                      <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
+                        value={keyword}
+                        onChange={setkeyword}
+                        onClear={handleClearkeyword}
                       />
                     </FormGroup>
                   </Col>
 
-                </Row>
-                <Row>
-                  <Col className="col-search" lg={2}>
+                  <Col className="col-search" lg={3}>
                     <FormGroup>
                       <Form.Label className="text-start">  Job location</Form.Label>
                       <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
+                        value={location}
+                        onChange={setlocation}
+                        onClear={handleClearlocation}
                       />
                     </FormGroup>
                   </Col>
-                  <Col className="col-search" lg={2}>
+                  <Col className="col-search" lg={3}>
                     <FormGroup>
                       <Form.Label className="text-start"> Industry</Form.Label>
                       <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
+                        value={experience}
+                        onChange={setexperience}
+                        onClear={handleClearIndustry}
                       />
                     </FormGroup>
                   </Col>
-                  <Col className="col-search" lg={3}>
-                    <FormGroup>
-                      <Form.Label className="text-start"> Educational Background</Form.Label>
-                      <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col className="col-search" lg={3}>
-                    <FormGroup>
-                      <Form.Label className="text-start">  Salary Range</Form.Label>
-                      <CustomInput
-                        value={inputText}
-                        onChange={setInputText}
-                        onClear={handleClearText}
-                      />
-                    </FormGroup>
-                  </Col>
+
+
 
                 </Row>
                 <Row>
@@ -252,7 +233,7 @@ const ListOfCandidate = () => {
                   </thead>
                   <tbody>
                     {displayedData.map((item) => (
-                      <tr key={item.id} onClick={()=>navigate('/candidatedetails')} style={{cursor:'pointer'}}>
+                      <tr key={item.id} onClick={() => navigate('/candidatedetails')} style={{ cursor: 'pointer' }}>
                         <td className='candidatenamecss'> <div class="profile-image">
                           <Image src={profile} alt="Image" className='profileimg' />
 
@@ -261,9 +242,9 @@ const ListOfCandidate = () => {
                             {"Software engineer at Zem"}
                           </div></td>
                         <td key={item.match} >
-                         <span className={`data-item ${getColorClass(item.match)} px-3 py-2`}>{item.match}</span> 
-                          </td>
-                       
+                          <span className={`data-item ${getColorClass(item.match)} px-3 py-2`}>{item.match}</span>
+                        </td>
+
                         <td>{item.skills}</td>
                         <td>{item.contact}</td>
                         {/* Render additional data columns here */}

@@ -78,6 +78,7 @@
 
   .logoutcss{
     margin-top: 300px !important;
+    cursor: pointer;
     margin-left: 20px !important;
     color: rgba(255, 255, 255, 1);
   }
