@@ -7,7 +7,7 @@ import './ListOfCandidate.css';
 import logo from '../assets/Images/logo.svg';
 import profile from '../assets/Images/profile.svg';
 import back from '../assets/Images/back.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 const rowsPerLoad = 5;
 
 const CustomInput = ({ value, onChange, onClear }) => {
@@ -39,57 +39,64 @@ const CustomInput = ({ value, onChange, onClear }) => {
 const ListOfCandidate = () => {
   const [inputText, setInputText] = useState('');
   let navigate = useNavigate();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [displayedData, setDisplayedData] = useState([]);
   const [start, setStart] = useState(0);
-  useEffect(() => {
-    // Simulate fetching data from an API
-    // Replace this with your data-fetching logic
-    const fetchData = async () => {
-      // Simulating API call delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Assuming you have an array of data
-      // const newData = Array.from({ length: data.length + rowsPerLoad }, (_, index) => ({
-      //   id: index + 1,
-      //   candidate: 'Joey M.',
-      //   match: '9/10 ',
-      //   skills: 'React.js',
-      //   contact: 'joeym@gamil.com'
-      // }));
+  const location = useLocation();
+  const data = location.state?.candidatedata || [];
+  const userjson = location.state?.userjson || [];
 
 
-      const newData = [
-        {
-          id: "AWB123456",
-          candidate: 'Joey M.',
-          match: '9/10',
-          skills: 'React.js',
-          contact: 'joeym@gamil.com'
-        },
-        {
-          id: "AWB123456",
-          candidate: 'Joey M.',
-          match: '6/10',
-          skills: 'React.js',
-          contact: 'joeym@gamil.com'
-        },
-        {
-          id: "AWB123456",
-          candidate: 'Joey M.',
-          match: '4/10',
-          skills: 'React.js',
-          contact: 'joeym@gamil.com'
-        },
+  console.log(userjson, 'candidatedata')
+  // useEffect(() => {
+  //   // Simulate fetching data from an API
+  //   // Replace this with your data-fetching logic
+  //   const fetchData = async () => {
+  //     // Simulating API call delay
+  //     await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  //     // Assuming you have an array of data
+  //     // const newData = Array.from({ length: data.length + rowsPerLoad }, (_, index) => ({
+  //     //   id: index + 1,
+  //     //   candidate: 'Joey M.',
+  //     //   match: '9/10 ',
+  //     //   skills: 'React.js',
+  //     //   contact: 'joeym@gamil.com'
+  //     // }));
 
 
-      ];
+  //     const newData = [
+  //       {
+  //         id: "AWB123456",
+  //         candidate: 'Joey M.',
+  //         match: '9/10',
+  //         skills: 'React.js',
+  //         contact: 'joeym@gamil.com'
+  //       },
+  //       {
+  //         id: "AWB123456",
+  //         candidate: 'Joey M.',
+  //         match: '6/10',
+  //         skills: 'React.js',
+  //         contact: 'joeym@gamil.com'
+  //       },
+  //       {
+  //         id: "AWB123456",
+  //         candidate: 'Joey M.',
+  //         match: '4/10',
+  //         skills: 'React.js',
+  //         contact: 'joeym@gamil.com'
+  //       },
 
-      setData(newData);
-    };
 
-    fetchData();
-  }, [data]);
+  //     ];
+
+  //     setData(newData);
+  //   };
+
+  //   fetchData();
+  // }, [data]);
 
   const getColorClass = (value) => {
 
@@ -113,35 +120,74 @@ const ListOfCandidate = () => {
     setStart(start + rowsPerLoad);
   };
 
-
-
   const [jobTitle, setjobTitle] = useState('');
-  const [keyword, setkeyword] = useState('');
-  const [location, setlocation] = useState('');
-  const [experience, setexperience] = useState('');
+  const [skill, setskill] = useState('');
+  const [location1, setlocation] = useState('');
+  const [industry, setIndustry] = useState('');
 
+  useEffect(() => {
 
-  const handleClearText = () => {
-    setjobTitle('');
+    if (userjson) {
+      setjobTitle(userjson?.openai_response?.experience_title)
+      setskill(userjson?.openai_response?.skills_Required)
+      setlocation(userjson?.openai_response?.job_location)
+      setIndustry(userjson?.openai_response?.industry)
+    }
+  }, []);
+
+  const setlocation1 = (event) => {
+    setlocation(event.target.value);
+  };
+  const setjobTitle1 = (event) => {
+    setjobTitle(event.target.value);
   };
 
-  const handleClearkeyword = () => {
-    setkeyword('');
+  const setskill1 = (event) => {
+    setskill(event.target.value);
   };
 
-  const handleClearlocation = () => {
-    setlocation('');
+  const setIndustry1 = (event) => {
+    setIndustry(event.target.value);
   };
 
-  const handleClearIndustry = () => {
-    setexperience('');
-  };
+  let list = {
+    'experience_title': '',
+    'industry': '',
+    'job_location': '',
+    'skills_Required': ''
+  }
+  const onSearchClick = (event) => {
+    event.preventDefault();
+
+
+    list.experience_title = jobTitle;
+    list.industry = industry;
+    list.job_location = location1;
+    list.skills_Required = skill;
+  console.log(list,"list")
+    // axios
+    //   .post('https://flat-star-41744.botics.co/profile/final/', list, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //       'Authorization': `token ${localStorage.getItem('token')}`
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log('Audio sent to backend:', response);
+   
+
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error sending audio to backend:', error);
+  
+    //   });
+  }
 
   return (
     <>
       <div className='headerlogo'>
         <Image src={logo} alt="Image" className='mainlogo' />
-        <div className='profileheader'>
+        {/* <div className='profileheader'>
           <div class="profile-image">
             <Image src={profile} alt="Image" className='profileimg' />
 
@@ -149,7 +195,7 @@ const ListOfCandidate = () => {
           <div class="profile-name">
             Monica R.
           </div>
-        </div>
+        </div> */}
       </div>
       <Sidebar />
       <main className="main-content">
@@ -163,25 +209,28 @@ const ListOfCandidate = () => {
       
     </div> */}
                 <Card.Title className='cardtitle  m-0 p-0'>Transcription Name </Card.Title>
+                <Form onSubmit={onSearchClick}>
                 <Row className='mt-2'>
                   <Col className="col-search" lg={3}>
 
                     <FormGroup>
                       <Form.Label className="text-start">Job Title</Form.Label>
-                      <CustomInput
-                        value={jobTitle}
-                        onChange={setjobTitle}
-                        onClear={handleClearText}
+                      <Form.Control
+                        type="text"
+                        defaultValue={jobTitle}
+                        onChange={setjobTitle1}
+                        className="custom-input listinput"
                       />
                     </FormGroup>
                   </Col>
                   <Col className="col-search" lg={3}>
                     <FormGroup>
                       <Form.Label className="text-start">Skills Required</Form.Label>
-                      <CustomInput
-                        value={keyword}
-                        onChange={setkeyword}
-                        onClear={handleClearkeyword}
+                      <Form.Control
+                        type="text"
+                        defaultValue={skill}
+                        onChange={setskill1}
+                        className="custom-input listinput"
                       />
                     </FormGroup>
                   </Col>
@@ -189,20 +238,22 @@ const ListOfCandidate = () => {
                   <Col className="col-search" lg={3}>
                     <FormGroup>
                       <Form.Label className="text-start">  Job location</Form.Label>
-                      <CustomInput
-                        value={location}
-                        onChange={setlocation}
-                        onClear={handleClearlocation}
+                      <Form.Control
+                        type="text"
+                        defaultValue={location1}
+                        onChange={setlocation1}
+                        className="custom-input listinput"
                       />
                     </FormGroup>
                   </Col>
                   <Col className="col-search" lg={3}>
                     <FormGroup>
                       <Form.Label className="text-start"> Industry</Form.Label>
-                      <CustomInput
-                        value={experience}
-                        onChange={setexperience}
-                        onClear={handleClearIndustry}
+                      <Form.Control
+                        type="text"
+                        defaultValue={industry}
+                        onChange={setIndustry1}
+                        className="custom-input listinput"
                       />
                     </FormGroup>
                   </Col>
@@ -212,9 +263,10 @@ const ListOfCandidate = () => {
                 </Row>
                 <Row>
                   <div className='candidatebtn'>
-                    <Button className='listbtncss' >Search for Candidates</Button>
+                    <Button className='listbtncss' type="submit">Search for Candidates</Button>
                   </div>
                 </Row>
+                </Form>
               </Card.Body>
             </Card>
           </Row>
@@ -225,28 +277,27 @@ const ListOfCandidate = () => {
                   <thead>
                     <tr>
                       <th >Candidate</th>
-                      <th>Match</th>
+                      <th>Experience Count</th>
                       <th>Skills</th>
-                      <th>Contact</th>
+                      <th>Location</th>
                       {/* Add more header columns as needed */}
                     </tr>
                   </thead>
                   <tbody>
                     {displayedData.map((item) => (
-                      <tr key={item.id} onClick={() => navigate('/candidatedetails')} style={{ cursor: 'pointer' }}>
+                      <tr key={item.id} onClick={() => navigate(`/candidatedetails/${item.id}`)} style={{ cursor: 'pointer' }}>
                         <td className='candidatenamecss'> <div class="profile-image">
-                          <Image src={profile} alt="Image" className='profileimg' />
+                          <Image src={item.logo_url} alt="Image" className='profileimg' />
 
                         </div><div class="profile-name">
                             {item.candidate}<br></br>
-                            {"Software engineer at Zem"}
+                            {item.name}
                           </div></td>
-                        <td key={item.match} >
-                          <span className={`data-item ${getColorClass(item.match)} px-3 py-2`}>{item.match}</span>
+                        <td  style={{width:'125px',textAlign:'center'}}>
+                         {item.experience_count} years
                         </td>
-
-                        <td>{item.skills}</td>
-                        <td>{item.contact}</td>
+                        <td>{item.title}</td>
+                        <td>{item.location}</td>
                         {/* Render additional data columns here */}
                       </tr>
                     ))}

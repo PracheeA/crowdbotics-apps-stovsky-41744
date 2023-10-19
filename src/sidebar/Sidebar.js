@@ -21,7 +21,6 @@ function Sidebar() {
   };
 
   const onLogout = () => {
-    alert()
     navigate('/')
     dispatch(logout())
    
@@ -56,7 +55,7 @@ function Sidebar() {
           
         </ul>
 
-        <div  className="mt-auto logoutcss">
+        <div onClick={onLogout} className="mt-auto logoutcss">
         <Image src={logout1}  onClick={onLogout}  className='navbarimg'  />
           Logout</div>
       </nav>

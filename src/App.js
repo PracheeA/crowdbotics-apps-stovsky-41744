@@ -65,7 +65,7 @@ function App() {
           <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/listofrequirements' element={<ListOfRequirements />} />
           <Route exact path='/listofcandidate' element={<ListOfCandidate />} />
-          <Route exact path='/candidatedetails' element={<CandidateDetails />} />
+          <Route exact path='/candidatedetails/:id' element={<CandidateDetails />} />
           {/* <Route exact path='/recording' element={<Recording />} /> */}
           <Route exact path='/recording' element={<AudioRecorder />} />
 

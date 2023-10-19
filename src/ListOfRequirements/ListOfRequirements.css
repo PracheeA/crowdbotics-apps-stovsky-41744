@@ -1,7 +1,7 @@
 /* Page.css */
 /* Style the scrollbar track (the area behind the scrollbar) */
 .scrollable-text {
-  max-height: 470px !important;
+  height: 400px !important;
   /* Set a maximum height to make the content scrollable */
   overflow-y: scroll !important;
   /* Enable vertical scrolling */
