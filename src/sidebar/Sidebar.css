@@ -1,84 +1,85 @@
 /* Sidebar styles */
 .sidebar {
-    background-color: rgba(37, 41, 47, 1);
-    color: #fff;
-    height: 100vh;
-    width: 250px; /* Adjust the width as needed */
-    position: fixed;
-    padding: 2px;
-  }
-
-.sidebarTitle{
-  font-family: 'Roboto-bold';
-  font-size: 40px !important;
-    color: #799ACC !important;
+  background-color: rgba(37, 41, 47, 1);
+  color: #fff;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  padding: 2px;
 }
 
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
+.sidebarTitle {
+  font-family: 'Roboto-bold';
+  font-size: 40px !important;
+  color: #799ACC !important;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
 
 
-  .sidebar li {
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-bottom: 4px solid #333; /* Add a bottom border to each menu item */
-  }
+.sidebar li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-bottom: 4px solid #333;
+}
 
-  .navbarimg{
-    margin-right: 10px;
-    height: 15px;
-    cursor: pointer;
-  }
-  
-  /* Style the active menu item */
-  .sidebar li.active {
-    background-color: #fff;
-    color: rgba(19, 73, 138, 1);
-    border-color: #fff; /* Change the border color for active item */
-  }
-  
-  /* Hover effect for menu items */
-  .sidebar li:hover {
-    background-color: #333;
-  }
-  
-  /* Main content styles */
-  .main-content {
-    margin-left: 250px; /* Adjust the margin to match the sidebar width */
-    padding: 20px;
-  }
-  
-  /* Optional: Style the main content area */
-  .main-content h1 {
-    font-size: 24px;
-  }
-  
-  .main-content p {
-    font-size: 16px;
-  }
-  
-  /* Style for the logout button */
-  .logout-button {
-    background-color: #ff0000; /* Red background color for the button */
-    color: #fff; /* White text color */
-    border: none;
-    padding: 10px 15px;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  /* Style for the logout button on hover */
-  .logout-button:hover {
-    background-color: #cc0000; /* Darker red on hover */
-  }
-  
+.navbarimg {
+  margin-right: 10px;
+  height: 15px;
+  cursor: pointer;
+}
 
-  .logoutcss{
-    margin-top: 300px !important;
-    cursor: pointer;
-    margin-left: 20px !important;
-    color: rgba(255, 255, 255, 1);
-  }
+.sidebar li.active {
+  background-color: #fff;
+  color: rgba(19, 73, 138, 1);
+  border-color: #fff;
+}
+
+.sidebar li:hover {
+  background-color: #333;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+.main-content h1 {
+  font-size: 24px;
+}
+
+.main-content p {
+  font-size: 16px;
+}
+
+.logout-button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #cc0000;
+}
+
+
+.logoutcss {
+  margin-top: 400px !important;
+  cursor: pointer;
+  margin-left: 20px !important;
+  color: rgba(255, 255, 255, 1);
+}
+
+.logoutcss1 {
+  margin-top: 350px !important;
+  cursor: pointer;
+  margin-left: 20px !important;
+  color: rgba(255, 255, 255, 1);
+}

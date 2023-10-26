@@ -3,12 +3,12 @@ import axios from 'axios';
 import { Card, Image } from 'react-bootstrap';
 import logo from './assets/Images/logo.svg';
 import { useNavigate } from 'react-router-dom';
-
+import Loader from './Loader';
 const AudioRecorder = () => {
   const [audioStream, setAudioStream] = useState(null);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [recording, setRecording] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
  
   useEffect(() => {
@@ -70,7 +70,7 @@ const AudioRecorder = () => {
   const sendAudioToBackend = (audioBlob) => {
     const formData = new FormData();
     formData.append('audio_file', audioBlob);
-
+    setLoading(true)
     axios
       .post('https://flat-star-41744.botics.co/profile/transcript/', formData, {
         headers: {
@@ -79,6 +79,7 @@ const AudioRecorder = () => {
         },
       })
       .then((response) => {
+        setLoading(false)
         console.log('Audio sent to backend:', response.data);
         navigate(
           '/listofrequirements',
@@ -97,16 +98,18 @@ const AudioRecorder = () => {
 
   return (
     <div>
-      {/* <p>Recording: {recording ? 'Yes' : 'No'}</p> */}
-
-
       <div className='cardBody'><Card.Title className='cardTitle'>
         <div className='headerlogo'>
           <Image src={logo} alt="Image" className='mainlogo' />
-
         </div>
       </Card.Title>
-
+      {loading ? (
+          <Loader />
+        ) : (
+          <div>
+           
+          </div>
+        )}
         <span className='textcss1'>Recording has started successfully, please click here to stop the call recording.</span>
 
         <button onClick={stopRecording} disabled={!recording}>

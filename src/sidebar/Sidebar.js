@@ -34,7 +34,7 @@ function Sidebar() {
         {/* <li className='sidebarTitle p-4'>Stovsky</li> */}
           <li
             className={`${(activeMenuItem == "Home") ? 'active' : ''} py-3 `}
-            onClick={() => handleMenuItemClick('Home')}
+            onClick={() => handleMenuItemClick('listofrequirements')}
           >
              <Image src={home}  className='navbarimg'  />
             Home
@@ -46,12 +46,12 @@ function Sidebar() {
             <Image src={search}  className='navbarimg'  />
             Search Candidates
           </li>
-          <li
+          {/* <li
            className={`${(activeMenuItem == "listofrequirements") ? 'active' : ''} py-3 `}
             onClick={() => handleMenuItemClick('listofrequirements')}
           ><Image src={book}  className='navbarimg'  />
            Transcribed Data
-          </li>
+          </li> */}
           
         </ul>
 
