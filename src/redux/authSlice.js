@@ -67,7 +67,7 @@ export const googleLogin = createAsyncThunk('googleLogin', async (response) => {
     //     },
     //     body: body
     // })
-    const res=response;
+    const res = response;
     return await res.json();
 })
 
@@ -130,7 +130,7 @@ export const getUserData = createAsyncThunk('getUserData', async (body) => {
     return await res.json();
 })
 
-export const getProfile= createAsyncThunk('getProfile', async (body) => {
+export const getProfile = createAsyncThunk('getProfile', async (body) => {
     const res = await fetch("https://flat-star-41744.botics.co/profile/", {
         method: "get",
         headers: {
@@ -192,10 +192,10 @@ const authSlice = createSlice({
         addUser: (state, action) => {
             state.key = localStorage.getItem('token')
         },
-        addAuthenticator: (state,action) => {
+        addAuthenticator: (state, action) => {
             state.isAuthenticated = true;
             state.token = localStorage.getItem('token')
-            localStorage.setItem('isAuthenticated',true)
+            localStorage.setItem('isAuthenticated', true)
         },
         logout: (state) => {
             state.key = null
@@ -204,23 +204,26 @@ const authSlice = createSlice({
             localStorage.removeItem('role')
             localStorage.removeItem('isAuthenticated')
             state.isAuthenticated = false;
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000);
 
             if (typeof window.FB !== 'undefined') {
-            window.FB.getLoginStatus(function (response) {
-                if (response.status === 'connected') {
-                    console.log(response, 'facebookresponse');
-                    const accessToken = response.authResponse.accessToken;
+                window.FB.getLoginStatus(function (response) {
+                    if (response.status === 'connected') {
+                        console.log(response, 'facebookresponse');
+                        const accessToken = response.authResponse.accessToken;
 
 
-                    window.FB.logout(function (response) {
-                        console.log(response, 'response');
-                        console.log(accessToken, 'accessToken');
-                        console.log("Logged Out!");
+                        window.FB.logout(function (response) {
+                            console.log(response, 'response');
+                            console.log(accessToken, 'accessToken');
+                            console.log("Logged Out!");
 
-                    });
-                }
-            });
-        }
+                        });
+                    }
+                });
+            }
 
         },
 
@@ -237,12 +240,23 @@ const authSlice = createSlice({
                 state.msg = msg
                 state.token = token
                 state.user = user
+                // toast("This is a multi-line toast message.\nYou can use \\n or <br> to create new lines.", {
+                toast.success(
+                    <div>
+                        Login Successful <br />
+                        Please go back to the plugin to start the call recording.
+                    </div>,
+                    {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 5000,
+                        hideProgressBar: true,
+                        enableHtml: true
 
-                toast.success('Login Successful!', {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                });
+                    });
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 5000);
 
                 localStorage.setItem('msg', msg)
                 localStorage.setItem('token', key)
@@ -256,7 +270,7 @@ const authSlice = createSlice({
                     autoClose: 2000,
                     hideProgressBar: true,
                 });
-                
+
             }
         },
 
@@ -266,17 +280,17 @@ const authSlice = createSlice({
         [signUpUser.pending]: (state, action) => {
             state.loading = true
         },
-        [signUpUser.fulfilled]: (state,action) => {
+        [signUpUser.fulfilled]: (state, action) => {
             state.loading = false;
-           
-            if(action.payload.key){
+
+            if (action.payload.key) {
                 toast.success('Sign-up Successful!', {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2000,
                     hideProgressBar: true,
                 });
-            } else{
-                const error= action.payload.email[0];
+            } else {
+                const error = action.payload.email[0];
                 toast.error(error, {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2000,
@@ -284,7 +298,7 @@ const authSlice = createSlice({
                 });
             }
 
-            
+
 
             // if (key) {
             //     state.isAuthenticated = true;
@@ -439,11 +453,18 @@ const authSlice = createSlice({
                 state.token = token
                 state.user = user
 
-                toast.success('Login Successful!', {
+                toast.success(<div>
+                    Login Successful <br />
+                    Please go back to the plugin to start the call recording.
+                  </div>, {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2000,
                     hideProgressBar: true,
                 });
+
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 5000);
 
                 localStorage.setItem('msg', msg)
                 localStorage.setItem('token', key)
@@ -513,10 +534,10 @@ const authSlice = createSlice({
         [getUserData.rejected]: (state, action) => {
             state.loading = true
         },
-        
+
     }
 })
 
 export const selectIsAuthenticated = (state) => state.user.isAuthenticated;
-export const { addToken, addUser, logout,addAuthenticator } = authSlice.actions
+export const { addToken, addUser, logout, addAuthenticator } = authSlice.actions
 export default authSlice.reducer
