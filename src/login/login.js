@@ -166,24 +166,7 @@ const Login = () => {
         .then((result) => {
           console.log(result.payload.key, "result.payload.key")
           if (result.payload.key) {
-            // dispatch(getUserProfile())
-            //   .then((result) => {
-            //     localStorage.setItem('role', result.payload.role)
-            //     localStorage.setItem('username', result.payload.username)
-            //     if (result.payload.role == 'supplier') {
-            //       navigate('/quotationDashboard')
-            //     } else if (result.payload.role == 'contractor') {
-            //       navigate('/contractorDashboard')
-            //     } else if (result.payload.role == 'trucking') {
-            //       navigate('/truckingdashboard')
-            //     } else {
-            //       navigate('/profileinformation')
-            //     }
-
-            //   })
-            //   .catch((errordata) => {
-
-            //   });
+           
           }
         })
         .catch((error) => {
@@ -221,14 +204,18 @@ const Login = () => {
             axios
               .request(config)
               .then(response => {
-                toast.success('Login Successful!', {
+                toast.success(<div>
+                  Login Successful <br />
+                  Please go back to the plugin to start the call recording.
+                </div>, {
                   position: toast.POSITION.TOP_RIGHT,
                   autoClose: 2000,
                   hideProgressBar: true,
                 });
-                console.log(response)
-                // localStorage.setItem("token", response.data.key)
-                // googlelogin(response.data.key)
+                setTimeout(() => {
+                  window.location.reload();
+                }, 5000);
+
               })
               .catch(error => {
                 window.scrollTo(0, 0)
@@ -299,34 +286,10 @@ const Login = () => {
 
     dispatch(signinuser(body))
       .then((result) => {
-        console.log(result,"re")
-        let token=result.payload.key;
+        console.log(result, "re")
+        let token = result.payload.key;
         window.postMessage({ type: 'SEND_TOKEN', token }, '*');
-    //      chrome.runtime.sendMessage(result.payload.key, function(response) {
-    //   console.log('Token sent to the extension');
-    // });
-        // if (result.payload.key) {
-        //   dispatch(getUserProfile())
-        //     .then((result) => {
-        //       localStorage.setItem('role', result.payload.role)
-        //       localStorage.setItem('username', result.payload.username)
-        //       if (result.payload.role == 'supplier') {
-        //         navigate('/quotationDashboard')
-        //       } else if (result.payload.role == 'contractor') {
-        //         navigate('/contractorDashboard')
-        //       } else if (result.payload.role == 'trucking') {
-        //         navigate('/truckingdashboard')
-        //       } else {
-        //         navigate('/profileinformation')
-        //       }
 
-        //     })
-        //     .catch((errordata) => {
-
-        //     });
-        // } else {
-
-        // }
       })
       .catch((error) => {
         console.log(error)
@@ -418,16 +381,6 @@ const Login = () => {
     }
   };
 
-  const responseHandler = (response) => {
-    // Handle the Apple Sign In response here
-    console.log(response);
-  };
-
-  // const signInWithApple = response => {
-  //  // https://flat-star-41744.botics.co/modules/social-auth/apple/login/
-  //   console.log(response, "res")
-  // }
-
   const signInWithApple = response => {
     if (response?.authorization?.id_token) {
       const { authorization } = response || {}
@@ -449,17 +402,24 @@ const Login = () => {
       axios
         .request(config)
         .then(appleResponse => {
-          console.log(appleResponse,"appleResponse")
+          console.log(appleResponse, "appleResponse")
           window.scrollTo(0, 0)
           if (appleResponse?.status === 200 || appleResponse?.status === 201) {
-           console.log(appleResponse,"appleResponse")
-           toast.success('Login Successful!', {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 2000,
-            hideProgressBar: true,
-          });
+            console.log(appleResponse, "appleResponse")
+            toast.success(<div>
+              Login Successful <br />
+              Please go back to the plugin to start the call recording.
+            </div>, {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
+              hideProgressBar: true,
+            });
+
+            setTimeout(() => {
+              window.location.reload();
+            }, 5000);
           } else if (appleResponse?.status === 400) {
-            console.log(appleResponse,"appleResponse")
+            console.log(appleResponse, "appleResponse")
             toast.error("Error", {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 2000,
@@ -478,7 +438,7 @@ const Login = () => {
           }
         })
     } else {
-     console.log('error')
+      console.log('error')
     }
   }
   return (
@@ -679,11 +639,11 @@ const Login = () => {
                     }}
                   >
                     <Image src={apple} className='applelogin' />
-                   
+
                   </button>
                 )}
               />
-             
+
               <FacebookLoginButton onFacebookLogin={responseFacebook} />
 
               <Image src={google} alt="Image" className='googleimage' onClick={() => {
